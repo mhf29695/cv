@@ -1,0 +1,549 @@
+/* ANIMATIONS */
+@keyframes fadeInDelayed00 {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes fadeInDelayed10 {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    10% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes fadeInDelayed15 {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    15% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes fadeInDelayed20 {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    20% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes fadeInDelayed30 {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    30% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes fadeInDelayed40 {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    40% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes fadeInDelayed50 {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    50% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes kineticUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    18% {
+        transform: translateY(0px);
+        opacity: 1;
+
+    }
+    82% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
+@keyframes reveal {
+    from { display: none; }
+    to { display: block; }
+}
+@keyframes hide {
+    from { display: block; }
+    to { display: none;}
+}
+/* END OF ANIMATIONS */
+
+
+/* ANIMATION CLASSES */
+.fadeDelayed0 {
+    animation: fadeInDelayed00 1.5s;
+}
+.fadeDelayed1 {
+    animation: fadeInDelayed10 1.5s;
+}
+.fadeDelayed1-5 {
+    animation: fadeInDelayed15 1.75s;
+}
+.fadeDelayed2 {
+    animation: fadeInDelayed20 1.5s;
+}
+.fadeDelayed3 {
+    animation: fadeInDelayed30 1.5s;
+}
+.fadeDelayed4 {
+    animation: fadeInDelayed40 1.5s;
+}
+.fadeDelayed5 {
+    animation: fadeInDelayed50 1.5s;
+}
+.disappear {
+    animation-timeline: view();
+    animation-name: kineticUp;
+    animation-timing-function: ease-out;
+    animation-range: cover;
+}
+/* END OF ANIMATION CLASSES */
+
+
+/* DEFAULT ELEMENTS */
+body {
+    /*font-family: "Red Hat Display", system-ui;
+    font-family: "Sarabun", sans-serif;*/
+    font-family: "DM Sans", sans-serif;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    scroll-behavior: smooth;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    min-width: 320px;
+    max-width: 900px;
+    width: 100%;
+    font-family: "Red Hat Display", system-ui;
+    color: white;
+}
+nav p, .button {
+    padding: 5px 1em 5px 1em;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: gray;
+}
+hr {
+    margin: 20px 0px;
+    border-radius: 20px;
+    border: 2px inset rgba(0, 0, 0, 0.265);
+}
+p, li, h2, h3, dd, dt, section > img, input, div > span, textarea {
+    animation-timeline: view();
+    animation-name: kineticUp;
+    animation-timing-function: ease-out;
+    animation-range: cover;
+}
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: unset;
+    transition-duration: .4s;
+    border-bottom: 1.5px solid;
+    border-image: linear-gradient(to right, transparent 25%, #fff 25%,#fff 75%, transparent 75% ) 1;
+}
+a:hover, #page a:hover {
+    border-image: linear-gradient(to right, transparent 25%, #993b3b 25%, #993b3b 75%, transparent 75% ) 10;
+}
+a:active, #page a:active {
+    border-image: linear-gradient(to right, transparent 25%, #702c2c 25%, #702c2c 75%, transparent 75% ) 10;
+}
+div {
+    margin: 0px;
+}
+/*footer a {
+    border-image: linear-gradient(to right, transparent 25%, gray 25%, gray 75%, transparent 75% ) 1;
+}*/
+footer > a:hover {
+    border-image-slice: 2;
+}
+footer > a {
+    margin-left: 5px;
+}
+h1,h2,h3,h4,h5,h6 {
+    text-align: center;
+    margin: 0px 1em;
+    /*font-family: "Bona Nova SC", sans-serif;*/
+    font-family: "Red Hat Display", system-ui;
+    color: #9f6d6d;
+}
+section > p, dt {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+ul, dl {
+    margin-right: 1em;
+}
+dl {
+    display: grid;
+    justify-items: center;
+}
+li::marker {
+    color: #9f6d6d;
+}
+/* END OF DEFAULT ELEMENTS */
+
+/* GENERIC CLASSES */
+.title {
+    font-size: 45px;
+    text-align: center;
+    margin: 16px;
+}
+.subtitle {
+    margin-bottom: 16px;
+}
+.one-col {
+    display: grid;
+    grid: auto / auto;
+}
+.three-col {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 1em;
+    justify-content: center;
+}
+.button {
+    /*font-family: "Sarabun", sans-serif;*/
+    font-family: "Red Hat Display", system-ui;
+    background-color: unset;
+    border-width: 2px;
+    border-color: #333;
+    font-size: 1em;
+    margin: .5em;
+    border-style: solid;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    animation: none;
+}
+.button:hover, a:hover {
+    border-color: #993b3b;
+    color: #993b3b;
+    transform: translateY(-2px);
+}
+.button:active, a:active {
+    border-color: #702c2c;
+    color: #702c2c;
+    transform: translateY(0px);
+    transition-duration: 0s;
+}
+.dropdown {
+    cursor: pointer;
+    margin-bottom: .5em;
+    padding: 0px .3em;
+    background-color: unset;
+    font-size: 1em;
+    border: unset;
+}
+.arrow {
+    margin-left: .3em;
+    height: 10.5px;
+    width: 10.5px;
+    border-width: 0 2px 2px 0;
+    border-color: #333;
+    border-style: solid;
+    transition-duration: 0.4s;
+    transform: rotate(-45deg);
+}
+.arrow:hover {
+    border-color: #993b3b;
+}
+.arrow:active {
+    border-color: #702c2c;
+    transition-duration: 0s;
+}
+.nav-header {
+    min-width: 320px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #9f6d6d;
+    position: sticky;
+    top: 0px;
+    z-index: 997;
+    align-self: normal;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.306);
+}
+.list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: .5em;
+}
+.list ul {
+    display: none;
+}
+.list button {
+    font-weight: 600;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+.list ul > li {
+    display: list-item;
+    font-weight: initial;
+    list-style-type: circle;
+}
+.card img {
+    object-position: top;
+    object-fit: cover;
+    height: 200px;
+    margin-bottom: .5em;
+}
+/* END OF GENERIC CLASSES */
+
+
+/* PAGE */
+#page {
+    min-width: min-content;
+    max-width: 900px;
+    margin-right: 1em;
+    margin-left: 1em;
+}
+#page a {
+    border-image: linear-gradient(to right, transparent 25%, #000 25%, #000 75%, transparent 75% ) 1;   
+}
+#splash {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#info {
+    display: flex;
+    align-items: center;
+    text-align: justify;
+}
+#info img {
+    max-width: 150px;
+    min-width: 100px;
+    margin-right: 8px;
+    border: 3px solid #945353;
+}
+@media only screen and (max-width: 900px) {
+    #projects {
+        grid: auto auto auto / auto;
+        row-gap: 1em;
+        justify-content: center;
+        text-align: left;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .three-col {
+        grid: auto auto auto / auto;
+        row-gap: 1em;
+        justify-content: center;
+        text-align: left;
+    }
+    #skills div > span {
+        justify-content: center;
+    }
+    #skills > div {
+        width: 202px;
+    }
+}
+@media only screen and (max-width: 350px) {
+    #info {
+        flex-direction: column;
+        text-align: center;
+    }
+    #info img {
+        animation: fadeInDelayed20 1.5s;
+    }
+    .three-col {
+        grid: auto auto auto / auto;
+        row-gap: 1em;
+    }
+}
+#jobs {
+    display: flex;
+    justify-content: center;
+}
+#skills {
+    margin: 1em 0px 0px 0px;
+}
+#skills li  {
+    text-align: left;
+}
+#skills ul {
+    margin: 0px;
+    padding-left: 1em;
+}
+#jobs dd,dt {
+    text-align: left;
+}
+#skills ul, #jobs dl {
+    margin-right: 0px;
+}
+#projects div {
+    display: flex;
+    flex-direction: column;
+}
+/* PAGE */
+
+
+/* CONTACT */
+#contact {
+    min-width: 280px;
+    max-width: 540px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 25px;
+}
+#contact hr {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+#contact section {
+    text-align: center;
+    margin: 0px 1em;
+}
+#contact form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+#contact form div {
+    display: flex;
+    justify-content: center;
+}
+#contact form div.data {
+    margin-bottom: 1em;
+    justify-content: space-between;
+}
+#contact form span {
+    width: 7em;
+}
+#contact form div.data > input, textarea {
+    width: 100%;
+    margin-left: 1em;
+    resize: vertical;
+    font-family: "Ubuntu Mono", monospace;
+}
+#submit {
+    width: 6em;
+    align-self: center;
+}
+#contact p {
+    margin: 0px;
+}
+#projects {
+    margin-top: 1em;
+}
+/* END CONTACT */
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.306);
+    transition: 0.4s;
+    max-width: 300px;
+    color: white;
+    background-color: #9f6d6d;
+}
+
+.card h3 {
+    color: white;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.306);
+}
+
+.text {
+    padding: .25em 1em;
+}
+/* move to dev file
+
+.img-container {
+    position: relative;
+}
+.img-container:hover img {
+    transform: translateY(-5px);
+    transition-duration: .4s;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.306);
+    opacity: .4;
+}
+.img-container:hover .test {
+    opacity: 1;
+}
+
+.test {
+    position: absolute;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition-duration: .4s;
+}
+*/
+
+
+/* TODO
+Fix order and comments
+fix image size -- perhaps arrows to scroll through (look at Google for that and W3 Schools
+may just remove hover and work on that for updated page
+change some colors around
+implement blur for images to zoom in maybe? -- may just delete that function
+make links a different color if in body or bold them? might just leave as is */

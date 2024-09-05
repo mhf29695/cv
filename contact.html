@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/miles-stylesheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miles Hayden Flores || Contact</title>
+</head>
+<body>
+    <header class="nav-header">
+        <nav id="toolbar">
+            <p>Miles Hayden Flores</p>
+            <p><a href="index.html">About Miles</a></p>
+        </nav>
+    </header>
+            <div id="contact" class="one-col">
+                <header class="disappear">
+                    <h1 id="title" class="fadeDelayed0 title">Contact Miles Hayden Flores</h1>
+                </header>
+                <section class="fadeDelayed1">
+                    <p>4-220 505 Riverbend Pkwy., Athens, Georgia &#x2022; +1 (470) 302-6084 &#x2022; mileshflores@gmail.com</p>
+                </section>
+                <div class="disappear"><hr class="fadeDelayed1-5"/></div>
+                <section>
+                    <form action="mailto:mileshflores@gmail.com" method="post" id="form-input">
+                        <div class="fadeDelayed2 data"><span>Name:</span><input type="text" id="name"></div>
+                        <div class="fadeDelayed3 data"><span>Email:</span><input type="email" id="email"></div>
+                        <div class="fadeDelayed4 data"><span>Message:</span><textarea rows="5" id="message"></textarea></div>                    
+                        <div class="fadeDelayed5"><span><input onclick="append()" type="submit" id="submit" class="button disappear"></span></div>   
+                    </form>
+                </section>
+        </div>
+    <footer>
+        <span><a href="index.html">Miles Hayden Flores</a> &copy; 2024</span>
+        <a href="https://linkedin.com/in/miles-flores-5b12bb324" target="_blank"><i class="fa fa-brands fa-linkedin"></i></a>
+    </footer>
+    <script>
+    function append() {
+        var name = document.getElementById("name").value,
+            message = document.getElementById("message").value,
+            email = document.getElementById("email").value,
+            form = document.getElementById("form-input");
+        form.action = "mailto:mileshflores@gmail.com?body="
+            + message.replace(/\s+/g,"%20")
+            + "%0A%0A" + name.replace(/\s+/g,"%20")
+            + "%0A" + email
+            + "&subject=Contact%20Miles";
+    }
+    </script>
+</body>
+</html>
