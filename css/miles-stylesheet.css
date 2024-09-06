@@ -1,3 +1,13 @@
+/* ------------------------ NOTE ------------------------ */
+/* Any css that looks advanced is the result of intensive
+research into W3Schools and Stackoverflow. Some code was
+borrowed from the aforementioned sites but HEAVILY modified.
+For instance, the partial border on the links is from
+https://stackoverflow.com/a/68283780, which I then did
+research into the CSS property to modify it. I have
+mentioned where I acquired the code from above more complex
+CSS. The same goes for anything in the index.html file. */
+
 /* ANIMATIONS */
 @keyframes fadeInDelayed00 {
     0% {
@@ -101,7 +111,6 @@
     18% {
         transform: translateY(0px);
         opacity: 1;
-
     }
     82% {
         transform: translateY(0px);
@@ -111,14 +120,6 @@
         transform: translateY(-30px);
         opacity: 0;
     }
-}
-@keyframes reveal {
-    from { display: none; }
-    to { display: block; }
-}
-@keyframes hide {
-    from { display: block; }
-    to { display: none;}
 }
 /* END OF ANIMATIONS */
 
@@ -145,20 +146,18 @@
 .fadeDelayed5 {
     animation: fadeInDelayed50 1.5s;
 }
-.disappear {
-    animation-timeline: view();
-    animation-name: kineticUp;
-    animation-timing-function: ease-out;
-    animation-range: cover;
-}
 /* END OF ANIMATION CLASSES */
 
 
 /* DEFAULT ELEMENTS */
+* {
+    box-sizing: border-box;
+}
 body {
     /*font-family: "Red Hat Display", system-ui;
     font-family: "Sarabun", sans-serif;*/
     font-family: "DM Sans", sans-serif;
+    color: #333;
     margin: 0px;
     display: flex;
     flex-direction: column;
@@ -191,7 +190,8 @@ hr {
     border-radius: 20px;
     border: 2px inset rgba(0, 0, 0, 0.265);
 }
-p, li, h2, h3, dd, dt, section > img, input, div > span, textarea {
+#page :is(p,li,textarea,input,button,dd,dt,h1,h2,h3,h4,.card,hr,span),
+#contact :is(p,li,textarea,input,button,dd,dt,h1,h2,h3,h4,.card,hr,span) {
     animation-timeline: view();
     animation-name: kineticUp;
     animation-timing-function: ease-out;
@@ -203,6 +203,7 @@ a {
     color: unset;
     transition-duration: .4s;
     border-bottom: 1.5px solid;
+    /* courtesy of Stackoverflow and W3Schools */
     border-image: linear-gradient(to right, transparent 25%, #fff 25%,#fff 75%, transparent 75% ) 1;
 }
 a:hover, #page a:hover {
@@ -211,12 +212,6 @@ a:hover, #page a:hover {
 a:active, #page a:active {
     border-image: linear-gradient(to right, transparent 25%, #702c2c 25%, #702c2c 75%, transparent 75% ) 10;
 }
-div {
-    margin: 0px;
-}
-/*footer a {
-    border-image: linear-gradient(to right, transparent 25%, gray 25%, gray 75%, transparent 75% ) 1;
-}*/
 footer > a:hover {
     border-image-slice: 2;
 }
@@ -230,21 +225,35 @@ h1,h2,h3,h4,h5,h6 {
     font-family: "Red Hat Display", system-ui;
     color: #9f6d6d;
 }
+h2 {
+    font-size: 1.8em;
+}
+h3 {
+    font-size: 1.4em;
+}
 section > p, dt {
     margin-left: 1em;
     margin-right: 1em;
 }
-ul, dl {
-    margin-right: 1em;
-}
 dl {
     display: grid;
-    justify-items: center;
+    grid: auto / 1fr 1fr;
+    row-gap: 1em;
+    margin: 1em;
+    text-align: left;
+}
+dt {
+    text-align: right;
+}
+dd {
+    color: #606060;
+    margin: 0px;
 }
 li::marker {
     color: #9f6d6d;
 }
 /* END OF DEFAULT ELEMENTS */
+
 
 /* GENERIC CLASSES */
 .title {
@@ -253,30 +262,31 @@ li::marker {
     margin: 16px;
 }
 .subtitle {
+    font-family: "Sarabun", sans-serif;
     margin-bottom: 16px;
 }
 .one-col {
     display: grid;
-    grid: auto / auto;
+    grid-template-columns: auto;
 }
 .three-col {
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: repeat(3, 33%);
     column-gap: 1em;
     justify-content: center;
 }
 .button {
-    /*font-family: "Sarabun", sans-serif;*/
     font-family: "Red Hat Display", system-ui;
     background-color: unset;
     border-width: 2px;
     border-color: #333;
+    color: #333;
     font-size: 1em;
     margin: .5em;
     border-style: solid;
     border-radius: 5px;
     transition-duration: 0.4s;
-    animation: none;
+    animation: none !important; /* allows for hover up */
 }
 .button:hover, a:hover {
     border-color: #993b3b;
@@ -290,13 +300,15 @@ li::marker {
     transition-duration: 0s;
 }
 .dropdown {
+    color: #333;
     cursor: pointer;
     margin-bottom: .5em;
     padding: 0px .3em;
     background-color: unset;
-    font-size: 1em;
+    font-size: 1.1em;
     border: unset;
 }
+/* idea from W3Schools */
 .arrow {
     margin-left: .3em;
     height: 10.5px;
@@ -351,6 +363,24 @@ li::marker {
     object-fit: cover;
     height: 200px;
     margin-bottom: .5em;
+    animation: unset;
+}
+/* from W3Schools (eLC link) */
+.card {
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.306);
+    transition: 0.4s;
+    max-width: 600px;
+    color: white;
+    background-color: #9f6d6d;
+}
+.card h3 {
+    color: white;
+}
+.card:hover {
+    box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.306);
+}
+.text {
+    padding: .25em 1em;
 }
 /* END OF GENERIC CLASSES */
 
@@ -381,9 +411,9 @@ li::marker {
     margin-right: 8px;
     border: 3px solid #945353;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 900px) and (min-width: 400px) {
     #projects {
-        grid: auto auto auto / auto;
+        grid: auto auto auto / min-content;
         row-gap: 1em;
         justify-content: center;
         text-align: left;
@@ -391,16 +421,11 @@ li::marker {
 }
 @media only screen and (max-width: 400px) {
     .three-col {
-        grid: auto auto auto / auto;
+        grid: auto auto auto / 300px;
         row-gap: 1em;
-        justify-content: center;
-        text-align: left;
     }
     #skills div > span {
         justify-content: center;
-    }
-    #skills > div {
-        width: 202px;
     }
 }
 @media only screen and (max-width: 350px) {
@@ -411,14 +436,6 @@ li::marker {
     #info img {
         animation: fadeInDelayed20 1.5s;
     }
-    .three-col {
-        grid: auto auto auto / auto;
-        row-gap: 1em;
-    }
-}
-#jobs {
-    display: flex;
-    justify-content: center;
 }
 #skills {
     margin: 1em 0px 0px 0px;
@@ -430,12 +447,6 @@ li::marker {
     margin: 0px;
     padding-left: 1em;
 }
-#jobs dd,dt {
-    text-align: left;
-}
-#skills ul, #jobs dl {
-    margin-right: 0px;
-}
 #projects div {
     display: flex;
     flex-direction: column;
@@ -446,11 +457,10 @@ li::marker {
 /* CONTACT */
 #contact {
     min-width: 280px;
-    max-width: 540px;
+    max-width: 900px;
     width: 100%;
     height: 100%;
-    background-color: white;
-    border-radius: 25px;
+    margin-bottom: 1.8em;
 }
 #contact hr {
     margin-left: 1em;
@@ -493,57 +503,3 @@ li::marker {
     margin-top: 1em;
 }
 /* END CONTACT */
-.card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.306);
-    transition: 0.4s;
-    max-width: 300px;
-    color: white;
-    background-color: #9f6d6d;
-}
-
-.card h3 {
-    color: white;
-}
-
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-    box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.306);
-}
-
-.text {
-    padding: .25em 1em;
-}
-/* move to dev file
-
-.img-container {
-    position: relative;
-}
-.img-container:hover img {
-    transform: translateY(-5px);
-    transition-duration: .4s;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.306);
-    opacity: .4;
-}
-.img-container:hover .test {
-    opacity: 1;
-}
-
-.test {
-    position: absolute;
-    opacity: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition-duration: .4s;
-}
-*/
-
-
-/* TODO
-Fix order and comments
-fix image size -- perhaps arrows to scroll through (look at Google for that and W3 Schools
-may just remove hover and work on that for updated page
-change some colors around
-implement blur for images to zoom in maybe? -- may just delete that function
-make links a different color if in body or bold them? might just leave as is */

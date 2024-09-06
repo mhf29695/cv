@@ -1,153 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+    
+<!-- NOTE:  I installed jQuery for an easy function to make the list dropdown pretty.
+            I understand we did not discuss it in class and won't go over it, but I did
+            my research on Stackoverflow and the jQuery library afterwards to make sure
+            I use it properly. The JavaScript was also from extensive research in W3Schools
+            into onclick functions.
+-->
+
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/miles-stylesheet.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miles Hayden Flores || Résumé</title>
 </head>
+
 <body>
-        <header class="nav-header">
-            <nav id="toolbar">
-                <p>Miles Hayden Flores</p>
-                <p><a href="contact.html">Contact Miles</a></p>
-            </nav>
-        </header>
+    <header class="nav-header">
+        <nav id="toolbar">
+            <p>Miles Hayden Flores</p>
+            <p><a href="contact.html">Contact Miles</a></p>
+        </nav>
+    </header>
     <div id="page">
         <section id="splash">
-                <div class="disappear"><h1 id="title" class="fadeDelayed0 title">Miles Hayden Flores</h1></div>
-                <div class="disappear"><h4 id="subtitle" class="fadeDelayed1 subtitle">A film enthusiast, programmer, and esports player looking to help people and make them smile.</h4></div>
+            <div class="fadeDelayed0">
+                <h1 id="title" class="title">Miles Hayden Flores</h1>
+            </div>
+            <div class="fadeDelayed1">
+                <h4 id="subtitle" class="subtitle">A film enthusiast, programmer, and esports player
+                    looking to help people and make them smile.</h4>
+            </div>
             <div id="info">
-                <div class="disappear"><img src="images/miles_headshot.png" alt="Miles in a nice suit smiling." class="fadeDelayed1-5"></div>
+                <div class="fadeDelayed1-5"><img src="images/miles_headshot.png" alt="Miles in a nice suit smiling.">
+                </div>
                 <div id="text">
-                    <div class="disappear"><p class="fadeDelayed3">4-220 505 Riverbend Pkwy., Athens, Georgia</p></div>
-                    <div class="disappear"><p class="fadeDelayed4">+1 (470) 302-6084</p></div>
-                    <div class="disappear"><p class="fadeDelayed5">mileshflores@gmail.com</p></div>
+                    <div class="fadeDelayed3">
+                        <p>4-220 505 Riverbend Pkwy., Athens, Georgia</p>
+                    </div>
+                    <div class="fadeDelayed4">
+                        <p>+1 (470) 302-6084</p>
+                    </div>
+                    <div class="fadeDelayed5">
+                        <p>mileshflores@gmail.com</p>
+                    </div>
                 </div>
             </div>
         </section>
-        <div class="disappear"><hr class="fadeDelayed1"/></div>
+        <div class="fadeDelayed1">
+            <hr />
+        </div>
         <section class="fadeDelayed2">
             <h2>Education</h2>
-            <p>Expected 2026 graduate at UGA with a Bachelor’s in Computer Science and Film Studies with a GPA of 3.97. Have taken Web Programming, Systems Programming, Computer Architecture, Operating Systems, and Software Development.</p>
+            <p>Expected 2026 graduate at UGA with a Bachelor’s in Computer Science and Film Studies with a GPA of 3.97.
+                Have taken Web Programming, Systems Programming, Computer Architecture, Operating Systems, and Software
+                Development.</p>
         </section>
         <section class="fadeDelayed3">
             <h2>Honors and Awards</h2>
             <dl>
                 <dt>Zell Miller Scholarship Recipient since August 2022</dt>
-                <dd>Awared by maintaining a GPA of more than 3.3 after graduating high school with at least a 3.7, taking 4 rigorous courses, and an SAT of at least a 1200.</dd>
+                <dd>Awarded by maintaining a GPA of more than 3.3 after graduating high school with at least a 3.7,
+                    taking 4 rigorous courses, and an SAT of at least a 1200.</dd>
                 <dt>Presidential Scholar since May 2023</dt>
-                <dd>Given to students at UGA who have taken more than 14 credit hours in a semester and received a 4.0 in that semester.</dd>
+                <dd>Given to students at UGA who have taken more than 14 credit hours in a semester and received a 4.0
+                    in that semester.</dd>
             </dl>
         </section>
         <section class="fadeDelayed4">
             <h2>Skills</h2>
             <div id="skills" class="three-col">
                 <div class="list">
-                <span><button type="button" class="dropdown" onclick="toggleList(this,'#languages')">Languages<div class="arrow"></div></button></span>
-                <ul id="languages">
-                    <li>Java</li>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>Javascript</li>
-                    <li>C</li>
-                </ul>
-            </div>
-            <div class="list">
-                <span><button type="button" class="dropdown" onclick="toggleList(this,'#frameworks')">Frameworks<div class="arrow"></div></button></span>
-                <ul id="frameworks">
-                    <li>jQuery</li>
-                </ul>
-            </div>
-            <div class="list">
-                <span><button type="button" class="dropdown" onclick="toggleList(this,'#applications')">Applications<div class="arrow"></div></button></span>
-                <ul id="applications">
-                    <li>UNIX environments</li>
-                    <li>VSCode</li>
-                    <li>Brackets</li>
-                    <li>IntelliJ</li>
-                    <li>Eclipse</li>
-                    <li>Microsoft Office Suite</li>
-                </ul>
-            </div>
+                    <span><button type="button" class="dropdown" onclick="toggleList(this,'#languages')">Languages<div
+                                class="arrow"></div></button></span>
+                    <ul id="languages">
+                        <li>Java</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Javascript</li>
+                        <li>C</li>
+                    </ul>
+                </div>
+                <div class="list">
+                    <span><button type="button" class="dropdown" onclick="toggleList(this,'#frameworks')">Frameworks<div
+                                class="arrow"></div></button></span>
+                    <ul id="frameworks">
+                        <li>jQuery</li>
+                    </ul>
+                </div>
+                <div class="list">
+                    <span><button type="button" class="dropdown" onclick="toggleList(this,'#applications')">Applications
+                            <div class="arrow"></div>
+                        </button></span>
+                    <ul id="applications">
+                        <li>UNIX environments</li>
+                        <li>VSCode</li>
+                        <li>Brackets</li>
+                        <li>IntelliJ</li>
+                        <li>Eclipse</li>
+                        <li>Microsoft Office Suite</li>
+                    </ul>
+                </div>
             </div>
         </section>
         <section class="fadeDelayed4">
             <h2>Leadership and Experience</h2>
             <div id="jobs">
-            <dl>
-                <dt><a href="https://www.amctheatres.com">American Multi-Cinema Theatres</a></dt>
-                <dd>June-July 2023, June 2024</dd>
-                <dt><a href="https://www.keystonesidingwindows.com">Keystone Siding and Windows</a></dt>
-                <dd>June 2024</dd>
-                <dt>Team Captain for the West Forsyth High School Esports team</dt>
-                <dd>August 2020 - May 2022</dd>
-            </dl>
-        </div>
+                <dl>
+                    <dt><a href="https://www.amctheatres.com/" target="_blank">American Multi-Cinema Theatres</a></dt>
+                    <dd>June-July 2023, June 2024</dd>
+                    <dt><a href="https://www.keystonesidingwindows.com/" target="_blank">Keystone Siding and Windows</a>
+                    </dt>
+                    <dd>June 2024</dd>
+                    <dt>Team Captain for the West Forsyth High School Esports team</dt>
+                    <dd>August 2020 - May 2022</dd>
+                </dl>
+            </div>
         </section>
-        <section class="fadeDelayed4"><h2>Projects</h2>
-        <div id="projects" class="three-col">
-            <div class="card" class="img">
-                <div class="img-container"><img src="images/estimate_calculator.png"></div>
-                <div class="text">
-                    <h3>Estimate Calculator</h3>
-                    <p>A detailed estimate calculator for a siding and window replacement company using dynamic CSS and
-                        Javascript in order to maintain usability and versatility. Incorporated jQuery for simplicity in
-                        program and more complex features. Constant communication with marketing team and owner in order to
-                        create an effective application with an appropriate design. Thorough bugfixing stage following
-                        iterative development of underlying code, as well as an optimizing stage to reduce bloat.</p>
+        <section class="fadeDelayed4">
+            <h2>Projects</h2>
+            <div id="projects" class="three-col">
+                <div class="card">
+                    <div class="img-container"><img src="images/estimate_calculator.png"></div>
+                    <div class="text">
+                        <h3>Estimate Calculator</h3>
+                        <p>A detailed estimate calculator for a siding and window replacement company using dynamic CSS
+                            and
+                            Javascript in order to maintain usability and versatility. Incorporated jQuery for
+                            simplicity in
+                            program and more complex features. Constant communication with marketing team and owner in
+                            order to
+                            create an effective application with an appropriate design. Thorough bugfixing stage
+                            following
+                            iterative development of underlying code, as well as an optimizing stage to reduce bloat.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img-container"><img src="images/dndcreator.png"></div>
+                    <div class="text">
+                        <h3>Dungeons and Dragons Character Creator</h3>
+                        <p>A Java application that pulls from several APIs to create a basic character sheet in a given
+                            fantasy
+                            language, complete with a dictionary and stat assignment with dice rolling. Incorporated
+                            iterative
+                            development and bugfixing, as well as numerous safeguards and warnings to prevent unwanted
+                            crashes
+                            and lag.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img-container">
+                        <img src="images/album_lookup.png">
+                    </div>
+                    <div class="text">
+                        <h3>Album Cover Lookup</h3>
+                        <p>A simple program that communicates with the iTunes API to search and download album covers
+                            for a
+                            specified artist and display them. Maintains usability while downloading and displays
+                            progress of
+                            the download.</p>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="img-container"><img src="images/dndcreator.png"></div>
-                <div class="text">
-                    <h3>Dungeons and Dragons Character Creator</h3>
-                    <p>A Java application that pulls from several APIs to create a basic character sheet in a given fantasy
-                        language, complete with a dictionary and stat assignment with dice rolling. Incorporated iterative
-                        development and bugfixing, as well as numerous safeguards and warnings to prevent unwanted crashes
-                        and lag.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="img-container">
-                    <img src="images/album_lookup.png">
-                </div>
-                <div class="text">
-                    <h3>Album Cover Lookup</h3>
-                    <p>A simple program that communicates with the iTunes API to search and download album covers for a
-                        specified artist and display them. Maintains usability while downloading and displays progress of
-                        the download.</p>
-                </div>
-            </div>
-        </div>
         </section>
     </div>
     <footer>
         <span><a href="contact.html">Miles Hayden Flores</a> &copy; 2024</span>
-        <a href="https://linkedin.com/in/miles-flores-5b12bb324" target="_blank"><i class="fa fa-brands fa-linkedin"></i></a>
+        <a href="https://linkedin.com/in/miles-flores-5b12bb324" target="_blank"><i
+                class="fa fa-brands fa-linkedin"></i></a>
     </footer>
     <script>
         function toggleList(button, id) {
             if (button.querySelector(".arrow").style.transform == "rotate(45deg)") {
-                button.querySelector(".arrow").style.transform  = "rotate(-45deg)";
+                button.querySelector(".arrow").style.transform = "rotate(-45deg)";
                 /*$(button).children().css("border-color", "#333");*/
             } else {
-                button.querySelector(".arrow").style.transform  = "rotate(45deg)";
+                button.querySelector(".arrow").style.transform = "rotate(45deg)";
                 /*$(button).children().css("border-color", "#993b3b");*/
             }
+            /* Uses jQuery's slide animation toggle */
             $(id).children().css("animation-name", "none");
-            $(id).slideToggle(function(){
+            $(id).slideToggle(function () {
+                /* allows for a smooth transition not affected by viewport animation */
                 $(id).children().css("animation-name", "kineticUp");
             });
         }
     </script>
 </body>
+
 </html>
