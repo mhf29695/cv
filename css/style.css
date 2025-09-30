@@ -108,17 +108,9 @@ CSS. The same goes for anything in the index.html file. */
         transform: translateY(30px);
         opacity: 0;
     }
-    18% {
+    15% {
         transform: translateY(0px);
         opacity: 1;
-    }
-    82% {
-        transform: translateY(0px);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-30px);
-        opacity: 0;
     }
 }
 /* END OF ANIMATIONS */
@@ -191,7 +183,8 @@ hr {
     border: 2px inset rgba(0, 0, 0, 0.265);
 }
 #page :is(p,li,textarea,input,button,dd,dt,h1,h2,h3,h4,.card,hr,span),
-#contact :is(p,li,textarea,input,button,dd,dt,h1,h2,h3,h4,.card,hr,span) {
+#contact :is(p,li,textarea,input,button,dd,dt,h1,h2,h3,h4,.card,hr,span),
+#splashImg {
     animation-timeline: view();
     animation-name: kineticUp;
     animation-timing-function: ease-out;
@@ -204,16 +197,14 @@ a {
     transition-duration: .4s;
     border-bottom: 1.5px solid;
     /* courtesy of Stackoverflow and W3Schools */
-    border-image: linear-gradient(to right, transparent 25%, #fff 25%,#fff 75%, transparent 75% ) 1;
+    border-image: linear-gradient(to right, transparent 25%, #fff 25%,#fff 75%, transparent 75%);
+    border-image-slice: 5%;
 }
 a:hover, #page a:hover {
-    border-image: linear-gradient(to right, transparent 25%, #993b3b 25%, #993b3b 75%, transparent 75% ) 10;
+    border-image: linear-gradient(to right, transparent 25%, #993b3b 25%, #993b3b 75%, transparent 75% ) 12%;
 }
 a:active, #page a:active {
-    border-image: linear-gradient(to right, transparent 25%, #702c2c 25%, #702c2c 75%, transparent 75% ) 10;
-}
-footer > a:hover {
-    border-image-slice: 2;
+    border-image: linear-gradient(to right, transparent 25%, #702c2c 25%, #702c2c 75%, transparent 75% ) 12%;
 }
 footer > a {
     margin-left: 5px;
@@ -260,10 +251,16 @@ li::marker {
     font-size: 45px;
     text-align: center;
     margin: 16px;
+    margin-bottom: 0px;
 }
 .subtitle {
+    font-size: 15px;
+    color: #b19999;
+}
+.blurb {
     font-family: "Sarabun", sans-serif;
     margin-bottom: 16px;
+    max-width: 432px;
 }
 .one-col {
     display: grid;
@@ -392,18 +389,42 @@ li::marker {
     margin-right: 1em;
     margin-left: 1em;
 }
+div.link {
+    container: links / inline-size;
+}
 #page a {
-    border-image: linear-gradient(to right, transparent 25%, #000 25%, #000 75%, transparent 75% ) 1;   
+    border-image: linear-gradient(to right, transparent 25%, #000 25%, #000 75%, transparent 75% ) 5%;   
 }
 #splash {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+#subtitle {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    margin-left: 1em;
+    gap: .25em 1em;
+}
+#subtitle .subtitle {
+    white-space: nowrap;
+    margin: 0;
+}
+#text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#text :is(h1,h2,h3,h4,h5,p) {
+    text-align: left;
+}
 #info {
     display: flex;
     align-items: center;
     text-align: justify;
+    margin-top: 1em;
 }
 #info img {
     max-width: 150px;
@@ -427,6 +448,18 @@ li::marker {
     #skills div > span {
         justify-content: center;
     }
+    #subtitle {
+        justify-content: center;
+    }
+    #info {
+        flex-direction: column;
+    }
+    #splashImg {
+        order: 2;
+    }
+#text :is(h1,h2,h3,h4,h5,p) {
+    text-align: center;
+}
 }
 @media only screen and (max-width: 350px) {
     #info {
@@ -435,6 +468,19 @@ li::marker {
     }
     #info img {
         animation: fadeInDelayed20 1.5s;
+    }
+}
+@container links (width < 30px) { /* this cannot be dynamic unless using width */
+    #page a {
+        /* courtesy of Stackoverflow and W3Schools */
+        border-image: linear-gradient(to right, transparent 75%, #000 75%,#000 100%, transparent 100%);
+        border-image-slice: 12%;
+    }
+    #page a:hover {
+        border-image: linear-gradient(to right, transparent 75%, #993b3b 75%, #993b3b 100%, transparent 100% ) 5%;
+    }
+    #page a:active {
+        border-image: linear-gradient(to right, transparent 75%, #702c2c 75%, #702c2c 100%, transparent 100% ) 5%;
     }
 }
 #skills {
