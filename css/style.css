@@ -362,6 +362,15 @@ li::marker {
     margin-bottom: .5em;
     animation: unset;
 }
+.definition {
+    grid-column: 1 / 3;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+}
+.definition ul {
+    max-width: 500px;
+}
 /* from W3Schools (eLC link) */
 .card {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.306);
