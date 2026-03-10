@@ -176,6 +176,8 @@ footer {
     margin-top: 8px;
     font-size: 12px;
     color: gray;
+    position: relative;
+    top: 65px;
 }
 hr {
     margin: 20px 0px;
@@ -250,8 +252,6 @@ li::marker {
 .title {
     font-size: 45px;
     text-align: center;
-    margin: 16px;
-    margin-bottom: 0px;
 }
 .subtitle {
     font-size: 15px;
@@ -329,7 +329,7 @@ li::marker {
     display: flex;
     justify-content: center;
     background-color: #9f6d6d;
-    position: sticky;
+    position: fixed;
     top: 0px;
     z-index: 997;
     align-self: normal;
@@ -397,6 +397,8 @@ li::marker {
     max-width: 900px;
     margin-right: 1em;
     margin-left: 1em;
+    position: relative;
+    top: 65px;
 }
 div.link {
     container: links / inline-size;
@@ -413,8 +415,6 @@ div.link {
     display: flex;
     justify-content: left;
     flex-wrap: wrap;
-    margin-bottom: 16px;
-    margin-left: 1em;
     gap: .25em 1em;
 }
 #subtitle .subtitle {
@@ -425,15 +425,18 @@ div.link {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: .5em;
 }
 #text :is(h1,h2,h3,h4,h5,p) {
     text-align: left;
+    margin: 0px;
 }
 #info {
     display: flex;
     align-items: center;
     text-align: justify;
     margin-top: 1em;
+    gap: 1em;
 }
 #info img {
     max-width: 150px;
@@ -449,15 +452,12 @@ div.link {
         text-align: left;
     }
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 430px) {
     .three-col {
         grid: auto auto auto / 300px;
         row-gap: 1em;
     }
     #skills div > span {
-        justify-content: center;
-    }
-    #subtitle {
         justify-content: center;
     }
     #info {
@@ -466,9 +466,12 @@ div.link {
     #splashImg {
         order: 2;
     }
-#text :is(h1,h2,h3,h4,h5,p) {
-    text-align: center;
-}
+    #text {
+        align-items: center;
+    }
+    #text :is(h1,h2,h3,h4,h5,p) {
+        text-align: center;
+    }
 }
 @media only screen and (max-width: 350px) {
     #info {
@@ -505,6 +508,10 @@ div.link {
 #projects div {
     display: flex;
     flex-direction: column;
+}
+#education {
+    margin: 0px;
+    padding-left: 1em;
 }
 /* PAGE */
 
