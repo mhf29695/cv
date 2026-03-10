@@ -406,6 +406,9 @@ div.link {
 #page a {
     border-image: linear-gradient(to right, transparent 25%, #000 25%, #000 75%, transparent 75% ) 5%;   
 }
+#info a {
+    border-image: linear-gradient(to right, transparent 25%, #b19999 25%, #b19999 75%, transparent 75% ) 5%;   
+}
 #splash {
     display: flex;
     align-items: center;
@@ -457,7 +460,7 @@ div.link {
         grid: auto auto auto / 300px;
         row-gap: 1em;
     }
-    #skills div > span {
+    #skills div > span, #subtitle {
         justify-content: center;
     }
     #info {
