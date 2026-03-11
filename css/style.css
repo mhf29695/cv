@@ -234,6 +234,8 @@ dl {
     row-gap: 1em;
     margin: 1em;
     text-align: left;
+    width: 100%;
+    max-width: 700px;
 }
 dt {
     text-align: right;
@@ -241,6 +243,7 @@ dt {
 dd {
     color: #606060;
     margin: 0px;
+    align-self: center;
 }
 li::marker {
     color: #9f6d6d;
@@ -317,7 +320,7 @@ li::marker {
     border-color: #333;
     border-style: solid;
     transition-duration: 0.4s;
-    transform: rotate(-45deg);
+    transform: rotate(45deg);
 }
 .arrow:hover {
     border-color: #993b3b;
@@ -343,9 +346,6 @@ li::marker {
     align-items: center;
     flex-direction: column;
     margin-bottom: .5em;
-}
-.list ul {
-    display: none;
 }
 .list button {
     font-weight: 600;
@@ -390,6 +390,11 @@ li::marker {
 }
 .text {
     padding: .25em 1em;
+}
+.list_title {
+    font-style: italic;
+    color: #b19999;
+    font-weight: 500;
 }
 /* END OF GENERIC CLASSES */
 
@@ -451,8 +456,8 @@ div.link {
     border: 3px solid #945353;
 }
 section > p, section dl {
-    max-width: 700px;
     justify-self: center;
+    max-width: 700px;
 }
 @media only screen and (max-width: 900px) and (min-width: 400px) {
     #projects {
