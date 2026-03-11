@@ -411,7 +411,7 @@ li::marker {
 div.link {
     container: links / inline-size;
 }
-#page a {
+#jobs a {
     border-image: linear-gradient(to right, transparent 25%, #000 25%, #000 75%, transparent 75% ) 5%;   
 }
 #info a {
