@@ -459,6 +459,14 @@ section > p, section dl {
     justify-self: center;
     max-width: 700px;
 }
+@media only screen and (max-width: 1050px) and (min-width: 900px) {
+    #projects {
+        grid: auto / repeat(3, 280px);
+        row-gap: 1em;
+        justify-content: center;
+        text-align: left;
+    }
+}
 @media only screen and (max-width: 900px) and (min-width: 400px) {
     #projects {
         grid: auto auto auto / min-content;
@@ -495,6 +503,12 @@ section > p, section dl {
     }
     #info img {
         animation: fadeInDelayed20 1.5s;
+    }
+    #page {
+        top: 110px;
+    }
+    footer {
+        top: 110px;
     }
 }
 @container links (width < 30px) { /* this cannot be dynamic unless using width */
@@ -539,6 +553,7 @@ section > p, section dl {
     flex-direction: column;
     gap: .1em 1em;
     white-space: nowrap;
+    padding: 5px 1em 5px 1em;
 }
 #contact > p {
     margin: 0;
