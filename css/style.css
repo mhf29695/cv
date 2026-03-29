@@ -156,6 +156,7 @@ body {
     align-items: center;
     text-align: justify;
     scroll-behavior: smooth;
+    width: 100%;
 }
 nav {
     display: flex;
@@ -419,7 +420,7 @@ div.link {
     display: flex;
     justify-content: center;
 }
-#jobs a {
+#jobs a, #honors a {
     border-image: linear-gradient(to right, transparent 25%, #000 25%, #000 75%, transparent 75% ) 5%;   
 }
 #info a {
