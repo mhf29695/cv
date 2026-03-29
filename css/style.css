@@ -416,7 +416,7 @@ section > p, section dl {
 div.link {
     container: links / inline-size;
 }
-#jobs {
+#jobs, #honors {
     display: flex;
     justify-content: center;
 }
