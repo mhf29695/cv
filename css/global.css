@@ -185,15 +185,7 @@ hr {
     border-radius: 20px;
     border: 2px inset rgba(0, 0, 0, 0.265);
 }
-#page :is(p,li,textarea,input,button,dd,dt,h1,h2,h3,h4,.card,hr,span),
-#contact :is(p,li,textarea,input,button,dd,dt,h1,h2,h3,h4,.card,hr,span),
-#splashImg {
-    animation-timeline: view();
-    animation-name: kineticUp;
-    animation-timing-function: ease-out;
-    animation-range: cover;
-}
-a {
+a { /* underline for links */
     display: inline-block;
     text-decoration: none;
     color: unset;
@@ -325,7 +317,7 @@ section > p, section dl {
     border-color: #333;
     border-style: solid;
     transition-duration: 0.4s;
-    transform: rotate(45deg);
+    transform: rotate(45deg) translateY(-4px);
 }
 .arrow:hover {
     border-color: #993b3b;
@@ -401,6 +393,9 @@ section > p, section dl {
     color: #b19999;
     font-weight: 500;
 }
+div.link {
+    container: links / inline-size;
+}
 /* END OF GENERIC CLASSES */
 
 
@@ -412,9 +407,6 @@ section > p, section dl {
     margin-left: 1em;
     position: relative;
     top: 65px;
-}
-div.link {
-    container: links / inline-size;
 }
 #jobs, #honors {
     display: flex;
@@ -520,7 +512,7 @@ div.link {
         top: 110px;
     }
 }
-@container links (width < 30px) { /* this cannot be dynamic unless using width */
+@container links (width < 30px) { /* to change size of underline (this cannot be dynamic unless using width) */
     #page a {
         /* courtesy of Stackoverflow and W3Schools */
         border-image: linear-gradient(to right, transparent 75%, #000 75%,#000 100%, transparent 100%);
@@ -553,6 +545,12 @@ div.link {
 }
 #projects {
     margin-top: 1em;
+}
+#mode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 #contact {
     display: flex;

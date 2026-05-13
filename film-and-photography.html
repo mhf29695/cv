@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/film-and-photography.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+            rel="stylesheet" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Miles Hayden Flores || Film and Photography Gallery</title>
+    </head>
+    <body>
+        <header class="nav-header">
+            <nav id="toolbar">
+                <p>Miles Hayden Flores</p>
+                <div id="mode">
+                    <a href="computer-science.html">Film and Photography Gallery</a>
+                </div>
+                <div id="contact">
+                    <p>+1 (470) 302-6084</p>
+                    <a href="mailto:mileshflores@gmail.com">mileshflores@gmail.com</a>
+                </div>
+            </nav>
+        </header>
+        <main id="page">
+            <div id="gallery">
+                <div class="gallery-item">
+                    <p class="overlay">test</p>
+                    <img src="gallery/DSC_6710.JPG" alt="" />
+                </div>
+                <div class="gallery-item">
+                    <img src="gallery/DSC_6710.JPG" alt="" />
+                </div>
+                <div class="gallery-item">
+                    <img src="gallery/DSC_6710.JPG" alt="" />
+                </div>
+                <div class="gallery-item">
+                    <img src="gallery/DSC_6710.JPG" alt="" />
+                </div>
+                <div class="gallery-item">
+                    <img src="gallery/DSC_6710.JPG" alt="" />
+                </div>
+                <div class="gallery-item">
+                    <img src="gallery/DSC_6710.JPG" alt="" />
+                </div>
+            </div>
+        </main>
+    </body>
+    <script>  
+        jQuery(document).ready(function($){ // wait for the document to load
+            $("#page").css({
+                    'top' : $('.nav-header').outerHeight() + 'px'
+            });
+        });
+        $(window).resize(function(){
+            $("#page").css({
+                    'top' : $('.nav-header').outerHeight() + 'px'
+            });
+        });
+    </script>
+</html>
