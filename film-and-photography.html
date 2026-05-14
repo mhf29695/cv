@@ -22,7 +22,15 @@
         <title>Miles Hayden Flores || Film and Photography Gallery</title>
     </head>
     <body>
-        <header class="nav-header">
+
+        <div id="blur">
+            <div id="viewer">
+                <img id="image" />
+                <button type="button" class="close" onclick='closeImage()'></button>
+            </div>
+        </div>
+        
+        <header id="header" class="nav-header">
             <nav id="toolbar">
                 <p>Miles Hayden Flores</p>
                 <div id="mode">
@@ -36,8 +44,8 @@
         </header>
         <main id="page">
             <div id="gallery">
-                <div class="gallery-item">
-                    <p class="overlay">test</p>
+                <div class="gallery-item" onclick="openImage(this)">
+                    <div class="overlay"></div>
                     <img src="gallery/DSC_6710.JPG" alt="" />
                 </div>
                 <div class="gallery-item">
@@ -69,5 +77,68 @@
                     'top' : $('.nav-header').outerHeight() + 'px'
             });
         });
+
+        function openImage(galleryItem) {
+            let image = document.getElementById("image");
+            document.getElementById("page").style.animation = "blur 1s";
+            document.getElementById("header").style.animation = "blur 1s";
+            document.getElementById("blur").style.display = "flex";
+            document.getElementById("blur").style.animation = "reveal 1s";
+            let src = galleryItem.children[1].src;
+            image.src = src;
+            image.onclick = function(){ zoomImage(image) };
+            image.style.cursor = "zoom-in";
+                    
+            image.style.animation = "fadeIn 1.5s";
+            setTimeout(function(){
+                document.getElementById("page").style.filter = "blur(10px)";
+                document.getElementById("header").style.filter = "blur(10px)";
+            }, 1000);
+            document.body.style.height = "100%";
+            document.body.style.overflow = "hidden";
+        }
+        function closeImage() {
+            document.getElementById("blur").style.animation = "unreveal 1s";
+            document.getElementById("page").style.animation = "unblur 1s";
+            document.getElementById("header").style.animation = "unblur 1s";
+            document.getElementById("viewer").style.animation = "fadeOut 1.5s";
+            setTimeout(function(){
+                document.getElementById("page").style.filter = "none";
+                document.getElementById("header").style.filter = "none";
+                document.getElementById("blur").style.display = "none";
+            }, 1000);
+            document.body.style.height = "initial";
+            document.body.style.overflow = "initial";
+        }
+
+        function zoomImage(image) {
+            console.log(getCursorPos(image));
+            if (image.style.cursor == "zoom-in") {
+                image.style.cursor = "zoom-out";
+                image.style.transformOrigin = getCursorPos(image).x + "px " + getCursorPos(image).y + "px";
+                image.style.scale = "2.5";
+                image.style.aspectRatio = "auto " + image.parentElement.width + " / " + image.parentElement.height;
+                image.parentElement.style.overflow = "scroll";
+            } else {
+                image.style.cursor = "zoom-in";
+                image.style.scale = "1";
+                image.style.aspectRatio = "auto " + image.naturalWidth + " / " + image.naturalHeight;
+                image.parentElement.style.overflow = "initial";
+            }
+        }
+        /* Courtesy of https://www.w3schools.com/howto/howto_js_image_zoom.asp */
+        function getCursorPos(img) {
+            var a, x = 0, y = 0;
+            e = window.event;
+            /* Get the x and y positions of the image: */
+            a = img.getBoundingClientRect();
+            /* Calculate the cursor's x and y coordinates, relative to the image: */
+            x = e.pageX - a.left;
+            y = e.pageY - a.top;
+            /* Consider any page scrolling: */
+            x = x - window.pageXOffset;
+            y = y - window.pageYOffset;
+            return {x : x, y : y};
+        }
     </script>
 </html>
