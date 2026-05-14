@@ -33,7 +33,10 @@
     <header class="nav-header">
         <nav id="toolbar">
             <p>Miles Hayden Flores</p>
-            <div id="mode">
+            <div class="page-tab">
+                <p class="active">Computer Science</p>
+            </div>
+            <div class="page-tab">
                 <a href="film-and-photography.html">Film and Photography</a>
             </div>
             <div id="contact">
@@ -42,7 +45,7 @@
             </div>
         </nav>
     </header>
-    <main id="page">
+    <main id="main">
         <section id="splash">
             <div id="info">
                 <div id="splashImg">
@@ -62,8 +65,7 @@
                         </div>
                     </div>
                     <div class="fadeDelayed2">
-                        <h4 id="blurb" class="blurb">A film enthusiast, programmer, and esports player
-                            looking to help people and bring smiles to the world.</h4>
+                        <h4 id="blurb" class="blurb">A software engineer passionate about creating impactful applications for people.</h4>
                     </div>
                 </div>
             </div>
@@ -74,7 +76,7 @@
         <section class="fadeDelayed2">
             <h2>Education</h2>
             <div id="education">
-                <p>2026 graduate at University of Georgia with a BS in Computer Science and an AB in Film Studies with a GPA of
+                <p>University of Georgia 2026 graduate with a BS in Computer Science and a BA in Film Studies with a GPA of
                     3.97.
                 </p>
             </div>
@@ -96,7 +98,9 @@
         </section>
         <section class="fadeDelayed3">
             <h2>Leadership and Experience</h2>
+            <!-- SPLIT UP EXPERIENCE INTO RELEVANT AND OTHER -->
             <div id="jobs">
+                <h3>Relevant Experience</h3>
                 <dl>
                     <dt>
                         <div class="list_title">Web Developer</div>
@@ -117,6 +121,11 @@
                             <li>Incorporated iterative development and bug-testing.</li>
                         </ul>
                     </dd>
+                </dl>
+
+                <h3>Other Experience</h3>
+                <dl>
+                        
                     <dt>
                         <div class="list_title">Host</div>
                         <div class="link">
@@ -150,7 +159,7 @@
                         <div class="list_title">Esports Captain/Coordinator</div>
                         <div class="link">University of Georgia</div>
                     </dt>
-                    <dd>August 2022 - Present</dd>
+                    <dd>August 2022 - May 2026</dd>
                     <dd class="definition">
                         <ul>
                             <li>Schedule scrimmages and matches when competing in tournaments.</li>
@@ -221,20 +230,6 @@
                                 received a 3.5 GPA or greater in that semester.</li>
                         </ul>
                     </dd>
-                    <dt>
-                        <div class="list_title">Zell Miller Scholarship Recipient</div>
-                        <div class="link">
-                            <a href="https://www.gafutures.org/hope-state-aid-programs/hope-zell-miller-scholarships/zell-miller-scholarship/"
-                                target="_blank">Georgia Student Finance Commission</a>
-                        </div>
-                    </dt>
-                    <dd>since August 2022</dd>
-                    <dd class="definition">
-                        <ul>
-                            <li>Awarded by maintaining a GPA of more than 3.3 after graduating high school with at least
-                                a 3.7, taking 4 rigorous courses, and an SAT of at least a 1200.</li>
-                        </ul>
-                    </dd>
                 </dl>
             </div>
         </section>
@@ -274,35 +269,22 @@
                         </p>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="img-container"><img src="images/dndcreator.png"></div>
-                    <div class="text">
-                        <h3>Dungeons and Dragons Character Creator</h3>
-                        <p>A Java application that pulls from several APIs to create a basic character sheet in a given
-                            fantasy
-                            language, complete with a dictionary and stat assignment with dice rolling. Incorporated
-                            iterative
-                            development and bugfixing, as well as numerous safeguards and warnings to prevent unwanted
-                            crashes
-                            and lag.</p>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
-    <footer>
+    <footer id="footer">
         <span><a href="contact.html">Miles Hayden Flores</a> &copy; 2026</span>
         <a href="https://linkedin.com/in/miles-flores-5b12bb324" target="_blank"><i
                 class="fa fa-brands fa-linkedin"></i></a>
     </footer>
     <script>
         jQuery(document).ready(function($){ // wait for the document to load
-            $("#page").css({
+            $("#main").css({
                     'margin-top' : $('.nav-header').outerHeight() + 'px'
             });
         });
         $(window).resize(function(){
-            $("#page").css({
+            $("#main").css({
                     'margin-top' : $('.nav-header').outerHeight() + 'px'
             });
         });

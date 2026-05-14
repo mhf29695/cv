@@ -24,22 +24,27 @@
     <body>
 
         <div id="blur">
-            <div id="viewer">
-            <header>
-                <h1 id="image-title"></h1>
-                <button type="button" class="close" onclick='closeImage()'></button>
-            </header>
-            <div id="image-container">
-                <img id="image" />
+            <div id="viewer" tabindex="-1">
+                <header>
+                    <h1 id="image-title"></h1>
+                    <button type="button" class="close" onclick='closeImage()'></button>
+                </header>
+                <button type="button" class="prev" id="prev">&#8249;</button>
+                <div id="image-container">
+                    <img id="image" />
                 </div>
+                <button type="button" class="next" id="next">&#8250;</button>
             </div>
         </div>
         
         <header id="header" class="nav-header">
             <nav id="toolbar">
                 <p>Miles Hayden Flores</p>
-                <div id="mode">
+                <div class="page-tab">
                     <a href="./">Computer Science</a>
+                </div>
+                <div class="page-tab">
+                    <p class="active">Film and Photography</p>
                 </div>
                 <div id="contact">
                     <p>+1 (470) 302-6084</p>
@@ -47,7 +52,7 @@
                 </div>
             </nav>
         </header>
-        <main id="page">
+        <main id="main">
             <div id="gallery">
                 <div class="gallery-item" onclick="openImage(this)">
                     <div class="overlay">View</div>
@@ -75,7 +80,7 @@
                 </div>
             </div>
         </main>
-    <footer>
+    <footer id="footer">
         <span><a href="contact.html">Miles Hayden Flores</a> &copy; 2026</span>
         <a href="https://linkedin.com/in/miles-flores-5b12bb324" target="_blank"><i
                 class="fa fa-brands fa-linkedin"></i></a>
@@ -83,47 +88,79 @@
     </body>
     <script>  
         jQuery(document).ready(function($){ // wait for the document to load
-            $("#page").css({
+            $("#main").css({
                     'margin-top' : $('.nav-header').outerHeight() + 'px'
             });
         });
         $(window).resize(function(){
-            $("#page").css({
+            $("#main").css({
                     'margin-top' : $('.nav-header').outerHeight() + 'px'
             });
         });
+        const viewer = document.getElementById("viewer");
+        const main = document.getElementById("main");
+        const header = document.getElementById("header");
+        const footer = document.getElementById("footer");
+        const pageBlur = document.getElementById("blur");
+        const image = document.getElementById("image");
+        const gallery = document.getElementById("gallery");
+
+        viewer.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeImage();
+            }
+        });
 
         function openImage(galleryItem) {
-            let image = document.getElementById("image");
-            document.getElementById("page").style.animation = "blur 1s";
-            document.getElementById("header").style.animation = "blur 1s";
-            document.getElementById("blur").style.display = "flex";
-            document.getElementById("blur").style.animation = "reveal 1s";
+            main.style.animation = "blur 1s";
+            header.style.animation = "blur 1s";
+            footer.style.animation = "blur 1s";
+            pageBlur.style.display = "flex";
+            pageBlur.style.animation = "reveal 1s";
             let src = galleryItem.children[1].src;
             let alt = galleryItem.children[1].alt;
             document.getElementById("image-title").innerText = alt;
+            document.getElementById("prev").onclick = function() { prevImage(galleryItem); };
+            document.getElementById("next").onclick = function() { nextImage(galleryItem); };
             image.src = src;
             image.onclick = function(){ zoomImage(image) };
             image.style.cursor = "zoom-in";
                     
             image.style.animation = "fadeIn 1.5s";
             setTimeout(function(){
-                document.getElementById("page").style.filter = "blur(10px)";
-                document.getElementById("header").style.filter = "blur(10px)";
+                main.style.filter = "blur(10px)";
+                header.style.filter = "blur(10px)";
+                footer.style.filter = "blur(10px)";
             }, 1000);
             document.body.style.height = "100%";
             document.body.style.overflow = "hidden";
+            viewer.focus();
+        }
+        function nextImage(galleryItem) {
+            let next = galleryItem.nextElementSibling;
+            if (next == null) {
+                next = gallery.firstElementChild;
+            }
+            openImage(next);
+        }
+        function prevImage(galleryItem) {
+            let prev = galleryItem.previousElementSibling;
+            if (prev == null) {
+                prev = gallery.lastElementChild;
+            }
+            openImage(prev);
         }
         function closeImage() {
-            let image = document.getElementById("image");
-            document.getElementById("blur").style.animation = "unreveal 1s";
-            document.getElementById("page").style.animation = "unblur 1s";
-            document.getElementById("header").style.animation = "unblur 1s";
-            document.getElementById("viewer").style.animation = "fadeOut 1.5s";
+            pageBlur.style.animation = "unreveal 1s";
+            main.style.animation = "unblur 1s";
+            header.style.animation = "unblur 1s";
+            footer.style.animation = "unblur 1s";
+            viewer.style.animation = "fadeOut 1.5s";
             setTimeout(function(){
-                document.getElementById("page").style.filter = "none";
-                document.getElementById("header").style.filter = "none";
-                document.getElementById("blur").style.display = "none";
+                main.style.filter = "none";
+                header.style.filter = "none";
+                footer.style.filter = "none";
+                pageBlur.style.display = "none";
                 image.style.cursor = "zoom-in";
                 image.style.scale = "1";
                 image.style.aspectRatio = "auto " + image.parentElement.width + " / " + image.parentElement.height;

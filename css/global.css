@@ -203,10 +203,10 @@ a { /* underline for links */
     border-image: linear-gradient(to right, transparent 25%, #fff 25%,#fff 75%, transparent 75%);
     border-image-slice: 5%;
 }
-a:hover, #page a:hover {
+a:hover, #main a:hover {
     border-image: linear-gradient(to right, transparent 25%, #993b3b 25%, #993b3b 75%, transparent 75% ) 12%;
 }
-a:active, #page a:active {
+a:active, #main a:active {
     border-image: linear-gradient(to right, transparent 25%, #702c2c 25%, #702c2c 75%, transparent 75% ) 12%;
 }
 footer > a {
@@ -224,6 +224,7 @@ h2 {
 }
 h3 {
     font-size: 1.4em;
+    color:#ac8484;
 }
 section > p, dt {
     margin-left: 1em;
@@ -252,6 +253,7 @@ li::marker {
 section > p, section dl {
     justify-self: center;
     max-width: 700px;
+    align-self: center;
 }
 /* END OF DEFAULT ELEMENTS */
 
@@ -276,8 +278,8 @@ section > p, section dl {
 }
 .three-col {
     display: grid;
-    grid-template-columns: repeat(3, 33%);
-    column-gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1em;
     justify-content: center;
 }
 #projects.three-col {
@@ -407,11 +409,23 @@ section > p, section dl {
 div.link {
     container: links / inline-size;
 }
+.page-tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    flex-direction: row;
+    gap: 1.5em;
+}
+.active {
+    color: #993b3b;
+    font-weight: bold;
+}
 /* END OF GENERIC CLASSES */
 
 
 /* PAGE */
-#page {
+#main {
     min-width: min-content;
     max-width: 900px;
     margin-right: 1em;
@@ -420,6 +434,7 @@ div.link {
 #jobs, #honors {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 #jobs a, #honors a {
     border-image: linear-gradient(to right, transparent 25%, #000 25%, #000 75%, transparent 75% ) 5%;   
@@ -489,12 +504,6 @@ div.link {
 #projects {
     margin-top: 1em;
 }
-#mode {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
 #contact {
     display: flex;
     align-items: flex-end;
@@ -510,18 +519,25 @@ div.link {
 }
 @media only screen and (max-width: 1050px) and (min-width: 900px) {
     #projects {
-        grid: auto / repeat(3, 280px);
-        row-gap: 1em;
-        justify-content: center;
-        text-align: left;
+        grid: auto / repeat(auto-fit, minmax(280px, 1fr));
     }
 }
 @media only screen and (max-width: 900px) and (min-width: 400px) {
     #projects {
         grid: auto auto auto / min-content;
-        row-gap: 1em;
-        justify-content: center;
-        text-align: left;
+    }
+}
+@media only screen and (max-width: 500px) {
+    nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .5em 0;
+    }
+    .page-tab, #contact {
+        font-size: .9em;
+    }
+    .page-tab {
+        order: 3;
     }
 }
 @media only screen and (max-width: 430px) {
@@ -544,18 +560,6 @@ div.link {
     #text :is(h1,h2,h3,h4,h5,p) {
         text-align: center;
     }
-    nav {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: .5em 0;
-    }
-    #mode, #contact {
-        font-size: .9em;
-    }
-    #mode {
-        order: 3;
-        grid-column: 1 / span 3;
-    }
 }
 @media only screen and (max-width: 350px) {
     #info {
@@ -567,15 +571,15 @@ div.link {
     }
 }
 @container links (width < 30px) { /* to change size of underline (this cannot be dynamic unless using width) */
-    #page a {
+    #main a {
         /* courtesy of Stackoverflow and W3Schools */
         border-image: linear-gradient(to right, transparent 75%, #000 75%,#000 100%, transparent 100%);
         border-image-slice: 12%;
     }
-    #page a:hover {
+    #main a:hover {
         border-image: linear-gradient(to right, transparent 75%, #993b3b 75%, #993b3b 100%, transparent 100% ) 5%;
     }
-    #page a:active {
+    #main a:active {
         border-image: linear-gradient(to right, transparent 75%, #702c2c 75%, #702c2c 100%, transparent 100% ) 5%;
     }
 }
