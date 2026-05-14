@@ -168,9 +168,17 @@ nav {
     color: white;
     text-align: left;
     margin: 0 1em;
+    padding: .5em 1em;
+    align-items: center;
+    gap: .5em;
 }
-nav p, .button {
-    padding: 5px 1em 5px 1em;
+.button {
+    margin: 5px 1em 5px 1em;
+}
+nav > p {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 footer {
     display: flex;
@@ -460,6 +468,46 @@ div.link {
     display: flex;
     justify-content: center;
 }
+#skills {
+    margin: 1em 0px 0px 0px;
+}
+#skills li  {
+    text-align: left;
+}
+#skills ul {
+    margin: 0px;
+    padding-left: 1em;
+}
+#projects div {
+    display: flex;
+    flex-direction: column;
+}
+#courses {
+    margin: 0px;
+    padding-left: 1em;
+}
+#projects {
+    margin-top: 1em;
+}
+#mode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#contact {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: .1em 1em;
+    white-space: nowrap;
+}
+#contact > p {
+    margin: 0;
+    padding: 0;
+}
 @media only screen and (max-width: 1050px) and (min-width: 900px) {
     #projects {
         grid: auto / repeat(3, 280px);
@@ -496,9 +544,13 @@ div.link {
     #text :is(h1,h2,h3,h4,h5,p) {
         text-align: center;
     }
-    #toolbar {
+    nav {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: .5em 0;
+    }
+    #mode, #contact {
+        font-size: .9em;
     }
     #mode {
         order: 3;
@@ -526,46 +578,5 @@ div.link {
     #page a:active {
         border-image: linear-gradient(to right, transparent 75%, #702c2c 75%, #702c2c 100%, transparent 100% ) 5%;
     }
-}
-#skills {
-    margin: 1em 0px 0px 0px;
-}
-#skills li  {
-    text-align: left;
-}
-#skills ul {
-    margin: 0px;
-    padding-left: 1em;
-}
-#projects div {
-    display: flex;
-    flex-direction: column;
-}
-#courses {
-    margin: 0px;
-    padding-left: 1em;
-}
-#projects {
-    margin-top: 1em;
-}
-#mode {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-#contact {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: .1em 1em;
-    white-space: nowrap;
-    padding: 5px 1em 5px 1em;
-}
-#contact > p {
-    margin: 0;
-    padding: 0;
 }
 /* END PAGE */
