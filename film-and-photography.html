@@ -23,15 +23,15 @@
     </head>
     <body>
 
-        <div id="blur">
+        <div id="blur" tabindex="-1">
             <div id="viewer" tabindex="-1">
                 <header>
                     <h1 id="image-title"></h1>
-                    <button type="button" class="close" onclick='closeImage()'></button>
+                    <button type="button" class="close" onclick='closeImage()' tabindex="0"></button>
                 </header>
                 <button type="button" class="prev" id="prev">&#8249;</button>
                 <div id="image-container">
-                    <img id="image" />
+                    <img id="image" style="cursor: zoom-in;" onclick="zoomImage()"/>
                 </div>
                 <button type="button" class="next" id="next">&#8250;</button>
             </div>
@@ -104,14 +104,44 @@
         const pageBlur = document.getElementById("blur");
         const image = document.getElementById("image");
         const gallery = document.getElementById("gallery");
+        var timeout = null;
 
-        viewer.addEventListener("keydown", function(event) {
+        pageBlur.addEventListener("keydown", function(event) {
             if (event.key === "Escape") {
                 closeImage();
             }
         });
 
+        function zoomImage() {
+            if (image.style.cursor == "zoom-in") {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }
+        function zoomIn() {
+                image.style.cursor = "zoom-out";
+                let {x, y} = getCursorPos(image);
+                w = image.width;
+                h = image.height;
+                image.style.scale = "2.5";
+                image.style.aspectRatio = "auto " + image.naturalWidth + " / " + image.naturalHeight;
+                image.parentElement.style.overflow = "scroll";
+                image.parentElement.scrollLeft = x * 1.5;
+                image.parentElement.scrollTop = y * 1.5;
+        }
+        function zoomOut() {
+            image.style.cursor = "zoom-in";
+            image.style.scale = "1";
+            image.style.aspectRatio = "auto " + image.parentElement.width + " / " + image.parentElement.height;
+            image.parentElement.style.overflow = "initial";
+        }
         function openImage(galleryItem) {
+            pageBlur.inert = false;
+            zoomOut(image);
+            main.style.userSelect = "none";
+            header.style.userSelect = "none";
+            footer.style.userSelect = "none";
             main.style.animation = "blur 1s";
             header.style.animation = "blur 1s";
             footer.style.animation = "blur 1s";
@@ -123,15 +153,14 @@
             document.getElementById("prev").onclick = function() { prevImage(galleryItem); };
             document.getElementById("next").onclick = function() { nextImage(galleryItem); };
             image.src = src;
-            image.onclick = function(){ zoomImage(image) };
-            image.style.cursor = "zoom-in";
                     
             image.style.animation = "fadeIn 1.5s";
-            setTimeout(function(){
+            clearTimeout(timeout);
+            timeout = setTimeout(function(){
                 main.style.filter = "blur(10px)";
                 header.style.filter = "blur(10px)";
                 footer.style.filter = "blur(10px)";
-            }, 1000);
+            }, 950);
             document.body.style.height = "100%";
             document.body.style.overflow = "hidden";
             viewer.focus();
@@ -151,42 +180,25 @@
             openImage(prev);
         }
         function closeImage() {
+            pageBlur.inert = true;
             pageBlur.style.animation = "unreveal 1s";
             main.style.animation = "unblur 1s";
             header.style.animation = "unblur 1s";
             footer.style.animation = "unblur 1s";
             viewer.style.animation = "fadeOut 1.5s";
-            setTimeout(function(){
+            main.style.userSelect = "initial";
+            header.style.userSelect = "initial";
+            footer.style.userSelect = "initial";
+            clearTimeout(timeout);
+            timeout = setTimeout(function(){
                 main.style.filter = "none";
                 header.style.filter = "none";
                 footer.style.filter = "none";
                 pageBlur.style.display = "none";
-                image.style.cursor = "zoom-in";
-                image.style.scale = "1";
-                image.style.aspectRatio = "auto " + image.parentElement.width + " / " + image.parentElement.height;
-                image.parentElement.style.overflow = "initial";
-            }, 1000);
+                zoomOut(image);
+            }, 950);
             document.body.style.height = "initial";
             document.body.style.overflow = "initial";
-        }
-
-        function zoomImage(image) {
-            if (image.style.cursor == "zoom-in") {
-                image.style.cursor = "zoom-out";
-                let {x, y} = getCursorPos(image);
-                w = image.width;
-                h = image.height;
-                image.style.scale = "2.5";
-                image.style.aspectRatio = "auto " + image.naturalWidth + " / " + image.naturalHeight;
-                image.parentElement.style.overflow = "scroll";
-                image.parentElement.scrollLeft = x * 1.5;
-                image.parentElement.scrollTop = y * 1.5;
-            } else {
-                image.style.cursor = "zoom-in";
-                image.style.scale = "1";
-                image.style.aspectRatio = "auto " + image.parentElement.width + " / " + image.parentElement.height;
-                image.parentElement.style.overflow = "initial";
-            }
         }
         /* Courtesy of https://www.w3schools.com/howto/howto_js_image_zoom.asp */
         function getCursorPos(img) {
