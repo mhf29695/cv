@@ -39,7 +39,7 @@
             <nav id="toolbar">
                 <p>Miles Hayden Flores</p>
                 <div id="mode">
-                    <a href="index.html">Film and Photography Gallery</a>
+                    <a href="index.html">Computer Science</a>
                 </div>
                 <div id="contact">
                     <p>+1 (470) 302-6084</p>
@@ -50,36 +50,46 @@
         <main id="page">
             <div id="gallery">
                 <div class="gallery-item" onclick="openImage(this)">
-                    <div class="overlay"></div>
+                    <div class="overlay">View</div>
                     <img src="gallery/DSC_6710.JPG" alt="DSC_6710.JPG" />
                 </div>
-                <div class="gallery-item">
-                    <img src="gallery/DSC_6710.JPG" alt="" />
+                <div class="gallery-item" onclick="openImage(this)">
+                    <div class="overlay">View</div>
+                    <img src="gallery/DSC_6711.JPG" alt="DSC_6711.JPG" />
                 </div>
-                <div class="gallery-item">
-                    <img src="gallery/DSC_6710.JPG" alt="" />
+                <div class="gallery-item" onclick="openImage(this)">
+                    <div class="overlay">View</div>
+                    <img src="gallery/DSC_6712.JPG" alt="DSC_6712.JPG" />
                 </div>
-                <div class="gallery-item">
-                    <img src="gallery/DSC_6710.JPG" alt="" />
+                <div class="gallery-item" onclick="openImage(this)">
+                    <div class="overlay">View</div>
+                    <img src="gallery/DSC_6713.JPG" alt="DSC_6713.JPG" />
                 </div>
-                <div class="gallery-item">
-                    <img src="gallery/DSC_6710.JPG" alt="" />
+                <div class="gallery-item" onclick="openImage(this)">
+                    <div class="overlay">View</div>
+                    <img src="gallery/DSC_6714.JPG" alt="DSC_6714.JPG" />
                 </div>
-                <div class="gallery-item">
-                    <img src="gallery/DSC_6710.JPG" alt="" />
+                <div class="gallery-item" onclick="openImage(this)">
+                    <div class="overlay">View</div>
+                    <img src="gallery/DSC_6751.JPG" alt="DSC_6751.JPG" />
                 </div>
             </div>
         </main>
+    <footer>
+        <span><a href="contact.html">Miles Hayden Flores</a> &copy; 2026</span>
+        <a href="https://linkedin.com/in/miles-flores-5b12bb324" target="_blank"><i
+                class="fa fa-brands fa-linkedin"></i></a>
+    </footer>
     </body>
     <script>  
         jQuery(document).ready(function($){ // wait for the document to load
             $("#page").css({
-                    'top' : $('.nav-header').outerHeight() + 'px'
+                    'margin-top' : $('.nav-header').outerHeight() + 'px'
             });
         });
         $(window).resize(function(){
             $("#page").css({
-                    'top' : $('.nav-header').outerHeight() + 'px'
+                    'margin-top' : $('.nav-header').outerHeight() + 'px'
             });
         });
 
