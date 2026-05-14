@@ -25,8 +25,13 @@
 
         <div id="blur">
             <div id="viewer">
-                <img id="image" />
+            <header>
+                <h1 id="image-title"></h1>
                 <button type="button" class="close" onclick='closeImage()'></button>
+            </header>
+            <div id="image-container">
+                <img id="image" />
+                </div>
             </div>
         </div>
         
@@ -46,7 +51,7 @@
             <div id="gallery">
                 <div class="gallery-item" onclick="openImage(this)">
                     <div class="overlay"></div>
-                    <img src="gallery/DSC_6710.JPG" alt="" />
+                    <img src="gallery/DSC_6710.JPG" alt="DSC_6710.JPG" />
                 </div>
                 <div class="gallery-item">
                     <img src="gallery/DSC_6710.JPG" alt="" />
@@ -85,6 +90,8 @@
             document.getElementById("blur").style.display = "flex";
             document.getElementById("blur").style.animation = "reveal 1s";
             let src = galleryItem.children[1].src;
+            let alt = galleryItem.children[1].alt;
+            document.getElementById("image-title").innerText = alt;
             image.src = src;
             image.onclick = function(){ zoomImage(image) };
             image.style.cursor = "zoom-in";
@@ -98,6 +105,7 @@
             document.body.style.overflow = "hidden";
         }
         function closeImage() {
+            let image = document.getElementById("image");
             document.getElementById("blur").style.animation = "unreveal 1s";
             document.getElementById("page").style.animation = "unblur 1s";
             document.getElementById("header").style.animation = "unblur 1s";
@@ -106,23 +114,30 @@
                 document.getElementById("page").style.filter = "none";
                 document.getElementById("header").style.filter = "none";
                 document.getElementById("blur").style.display = "none";
+                image.style.cursor = "zoom-in";
+                image.style.scale = "1";
+                image.style.aspectRatio = "auto " + image.parentElement.width + " / " + image.parentElement.height;
+                image.parentElement.style.overflow = "initial";
             }, 1000);
             document.body.style.height = "initial";
             document.body.style.overflow = "initial";
         }
 
         function zoomImage(image) {
-            console.log(getCursorPos(image));
             if (image.style.cursor == "zoom-in") {
                 image.style.cursor = "zoom-out";
-                image.style.transformOrigin = getCursorPos(image).x + "px " + getCursorPos(image).y + "px";
+                let {x, y} = getCursorPos(image);
+                w = image.width;
+                h = image.height;
                 image.style.scale = "2.5";
-                image.style.aspectRatio = "auto " + image.parentElement.width + " / " + image.parentElement.height;
+                image.style.aspectRatio = "auto " + image.naturalWidth + " / " + image.naturalHeight;
                 image.parentElement.style.overflow = "scroll";
+                image.parentElement.scrollLeft = x * 1.5;
+                image.parentElement.scrollTop = y * 1.5;
             } else {
                 image.style.cursor = "zoom-in";
                 image.style.scale = "1";
-                image.style.aspectRatio = "auto " + image.naturalWidth + " / " + image.naturalHeight;
+                image.style.aspectRatio = "auto " + image.parentElement.width + " / " + image.parentElement.height;
                 image.parentElement.style.overflow = "initial";
             }
         }
