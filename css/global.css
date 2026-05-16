@@ -8,6 +8,19 @@ research into the CSS property to modify it. I have
 mentioned where I acquired the code from above more complex
 CSS. The same goes for anything in the index.html file. */
 
+/* COLORS */
+:root {
+  --primary-font-color: #000;
+  --secondary-font-color: #9f6d6d;
+  --tertiary-font-color: #ac8484;
+  --quarternary-font-color: #b19999;
+  --dark-bg-font-color: #fff;
+  --primary-bg-color: #fff;
+  --secondary-bg-color: #9f6d6d;
+  --primary-accent-color: #993b3b;
+  --secondary-accent-color: #702c2c;
+}
+
 /* ANIMATIONS */
 @keyframes fadeInDelayed00 {
     0% {
@@ -172,14 +185,6 @@ nav {
     align-items: center;
     gap: .5em;
 }
-.button {
-    margin: 5px 1em 5px 1em;
-}
-nav > p {
-    margin: 0;
-    font-size: 1.2em;
-    font-weight: bold;
-}
 footer {
     display: flex;
     justify-content: center;
@@ -200,14 +205,14 @@ a { /* underline for links */
     transition-duration: .4s;
     border-bottom: 1.5px solid;
     /* courtesy of Stackoverflow and W3Schools */
-    border-image: linear-gradient(to right, transparent 25%, #fff 25%,#fff 75%, transparent 75%);
+    border-image: linear-gradient(to right, transparent 25%, var(--dark-bg-font-color) 25%,var(--dark-bg-font-color) 75%, transparent 75%);
     border-image-slice: 5%;
 }
 a:hover, #main a:hover {
-    border-image: linear-gradient(to right, transparent 25%, #993b3b 25%, #993b3b 75%, transparent 75% ) 12%;
+    border-image: linear-gradient(to right, transparent 25%, var(--primary-accent-color) 25%, var(--primary-accent-color) 75%, transparent 75% ) 12%;
 }
 a:active, #main a:active {
-    border-image: linear-gradient(to right, transparent 25%, #702c2c 25%, #702c2c 75%, transparent 75% ) 12%;
+    border-image: linear-gradient(to right, transparent 25%, var(--secondary-accent-color) 25%, var(--secondary-accent-color) 75%, transparent 75% ) 12%;
 }
 footer > a {
     margin-left: 5px;
@@ -217,14 +222,14 @@ h1,h2,h3,h4,h5,h6 {
     margin: 0px 1em;
     /*font-family: "Bona Nova SC", sans-serif;*/
     font-family: "Red Hat Display", system-ui;
-    color: #9f6d6d;
+    color: var(--secondary-font-color);
 }
 h2 {
     font-size: 1.8em;
 }
 h3 {
     font-size: 1.4em;
-    color:#ac8484;
+    color:var(--tertiary-font-color);
 }
 section > p, dt {
     margin-left: 1em;
@@ -248,7 +253,7 @@ dd {
     align-self: center;
 }
 li::marker {
-    color: #9f6d6d;
+    color: var(--secondary-font-color);
 }
 section > p, section dl {
     justify-self: center;
@@ -265,7 +270,7 @@ section > p, section dl {
 }
 .subtitle {
     font-size: 15px;
-    color: #b19999;
+    color: var(--tertiary-font-color);
 }
 .blurb {
     font-family: "Sarabun", sans-serif;
@@ -299,13 +304,13 @@ section > p, section dl {
     animation: none !important; /* allows for hover up */
 }
 .button:hover, a:hover {
-    border-color: #993b3b;
-    color: #993b3b;
+    border-color: var(--primary-accent-color);
+    color: var(--primary-accent-color);
     transform: translateY(-2px);
 }
 .button:active, a:active {
-    border-color: #702c2c;
-    color: #702c2c;
+    border-color: var(--secondary-accent-color);
+    color: var(--secondary-accent-color);
     transform: translateY(0px);
     transition-duration: 0s;
 }
@@ -330,10 +335,10 @@ section > p, section dl {
     transform: rotate(45deg) translateY(-4px);
 }
 .arrow:hover {
-    border-color: #993b3b;
+    border-color: var(--primary-accent-color);
 }
 .arrow:active {
-    border-color: #702c2c;
+    border-color: var(--secondary-accent-color);
     transition-duration: 0s;
 }
 /* POSSIBLE TO-DO: make header appear better when switching modes */
@@ -342,7 +347,7 @@ section > p, section dl {
     width: calc(100% + 30px);
     display: flex;
     justify-content: center;
-    background-color: #9f6d6d;
+    background-color: var(--secondary-bg-color);
     position: fixed;
     top: -15px;
     left: -15px;
@@ -390,7 +395,7 @@ section > p, section dl {
     transition: 0.4s;
     max-width: 600px;
     color: white;
-    background-color: #9f6d6d;
+    background-color: var(--secondary-bg-color);
 }
 .card h3 {
     color: white;
@@ -403,7 +408,7 @@ section > p, section dl {
 }
 .list_title {
     font-style: italic;
-    color: #b19999;
+    color: var(--quarternary-font-color);
     font-weight: 500;
 }
 div.link {
@@ -418,7 +423,15 @@ div.link {
     gap: 1.5em;
 }
 .active {
-    color: #993b3b;
+    color: var(--primary-accent-color);
+    font-weight: bold;
+}
+.button {
+    margin: 5px 1em 5px 1em;
+}
+.name {
+    margin: 0;
+    font-size: 1.2em;
     font-weight: bold;
 }
 /* END OF GENERIC CLASSES */
@@ -437,10 +450,10 @@ div.link {
     flex-direction: column;
 }
 #jobs a, #honors a {
-    border-image: linear-gradient(to right, transparent 25%, #000 25%, #000 75%, transparent 75% ) 5%;   
+    border-image: linear-gradient(to right, transparent 25%, var(--primary-font-color) 25%, var(--primary-font-color) 75%, transparent 75% ) 5%;   
 }
 #info a {
-    border-image: linear-gradient(to right, transparent 25%, #b19999 25%, #b19999 75%, transparent 75% ) 5%;   
+    border-image: linear-gradient(to right, transparent 25%, var(--tertiary-font-color) 25%, var(--tertiary-font-color) 75%, transparent 75% ) 5%;   
 }
 #splash {
     display: flex;
@@ -573,14 +586,14 @@ div.link {
 @container links (width < 30px) { /* to change size of underline (this cannot be dynamic unless using width) */
     #main a {
         /* courtesy of Stackoverflow and W3Schools */
-        border-image: linear-gradient(to right, transparent 75%, #000 75%,#000 100%, transparent 100%);
+        border-image: linear-gradient(to right, transparent 75%, var(--primary-font-color) 75%,var(--primary-font-color) 100%, transparent 100%);
         border-image-slice: 12%;
     }
     #main a:hover {
-        border-image: linear-gradient(to right, transparent 75%, #993b3b 75%, #993b3b 100%, transparent 100% ) 5%;
+        border-image: linear-gradient(to right, transparent 75%, var(--primary-accent-color) 75%, var(--primary-accent-color) 100%, transparent 100% ) 5%;
     }
     #main a:active {
-        border-image: linear-gradient(to right, transparent 75%, #702c2c 75%, #702c2c 100%, transparent 100% ) 5%;
+        border-image: linear-gradient(to right, transparent 75%, var(--secondary-accent-color) 75%, var(--secondary-accent-color) 100%, transparent 100% ) 5%;
     }
 }
 /* END PAGE */
