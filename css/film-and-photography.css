@@ -61,9 +61,6 @@
    justify-content: flex-start;
 }
 
-
-
-
 @keyframes reveal {
    from {
       opacity: 0;
@@ -179,7 +176,6 @@
    transform: translate(-50%, -50%);
    z-index: 999;
    animation: fadeIn 1.5s;
-   width: 100%;
    max-width: 100vmin;
    display: grid;
    grid-template: auto auto / auto auto auto;
@@ -189,13 +185,14 @@
    outline: none;
 }
 
-#viewer img {
+#image-container img {
    object-fit: contain;
    cursor: zoom-in;
    max-width: 100%;
    max-height: 100%;
    transform-origin: top left;
    display: block;
+   justify-self: center;
 }
 
 #viewer header {
@@ -219,7 +216,16 @@
    position: relative;
    min-width: 300px;
    grid-row: 2 / 3;
+   max-height: 80vh;
+   width: max-content;
+   max-width: calc(100vmin - 5em);
 }
+
+#main .title {
+   margin-bottom: .5em;
+   font-size: 2em;
+}
+
 @media screen and (max-width: 600px) {
    #gallery {
       grid-template-columns: repeat(2, minmax(150px, 1fr));

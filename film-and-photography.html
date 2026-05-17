@@ -53,30 +53,31 @@
             </nav>
         </header>
         <main id="main">
+            <h1 class="title">Photo Gallery</h1>
             <div id="gallery">
                 <div class="gallery-item" onclick="openImage(this)">
                     <div class="overlay">View</div>
-                    <img src="gallery/DSC_6710.JPG" alt="DSC_6710.JPG" />
+                    <img src="gallery/DSC_6766.png" alt="DSC_6766.png" />
                 </div>
                 <div class="gallery-item" onclick="openImage(this)">
                     <div class="overlay">View</div>
-                    <img src="gallery/DSC_6711.JPG" alt="DSC_6711.JPG" />
+                    <img src="gallery/DSC_6877.png" alt="DSC_6877.png" />
                 </div>
                 <div class="gallery-item" onclick="openImage(this)">
                     <div class="overlay">View</div>
-                    <img src="gallery/DSC_6712.JPG" alt="DSC_6712.JPG" />
+                    <img src="gallery/DSC_6886.png" alt="DSC_6886.png" />
                 </div>
                 <div class="gallery-item" onclick="openImage(this)">
                     <div class="overlay">View</div>
-                    <img src="gallery/DSC_6713.JPG" alt="DSC_6713.JPG" />
+                    <img src="gallery/DSC_6902.png" alt="DSC_6902.png" />
                 </div>
                 <div class="gallery-item" onclick="openImage(this)">
                     <div class="overlay">View</div>
-                    <img src="gallery/DSC_6714.JPG" alt="DSC_6714.JPG" />
+                    <img src="gallery/DSC_7052.png" alt="DSC_7052.png" />
                 </div>
                 <div class="gallery-item" onclick="openImage(this)">
                     <div class="overlay">View</div>
-                    <img src="gallery/DSC_6751.JPG" alt="DSC_6751.JPG" />
+                    <img src="gallery/DSC_7082.png" alt="DSC_7082.png" />
                 </div>
             </div>
         </main>
@@ -104,11 +105,17 @@
         const pageBlur = document.getElementById("blur");
         const image = document.getElementById("image");
         const gallery = document.getElementById("gallery");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
         var timeout = null;
 
         pageBlur.addEventListener("keydown", function(event) {
             if (event.key === "Escape") {
                 closeImage();
+            } else if (event.key === "ArrowLeft") {
+                prevButton.onclick.apply(prevButton);
+            } else if (event.key === "ArrowRight") {
+                nextButton.onclick.apply(nextButton);
             }
         });
 
@@ -122,6 +129,7 @@
         function zoomIn() {
                 image.style.cursor = "zoom-out";
                 let {x, y} = getCursorPos(image);
+                image.style.justifySelf = "unset";
                 w = image.width;
                 h = image.height;
                 image.style.scale = "2.5";
@@ -131,6 +139,7 @@
                 image.parentElement.scrollTop = y * 1.5;
         }
         function zoomOut() {
+            image.style.justifySelf = "center";
             image.style.cursor = "zoom-in";
             image.style.scale = "1";
             image.style.aspectRatio = "auto " + image.parentElement.width + " / " + image.parentElement.height;
@@ -150,8 +159,8 @@
             let src = galleryItem.children[1].src;
             let alt = galleryItem.children[1].alt;
             document.getElementById("image-title").innerText = alt;
-            document.getElementById("prev").onclick = function() { prevImage(galleryItem); };
-            document.getElementById("next").onclick = function() { nextImage(galleryItem); };
+            prevButton.onclick = function() { prevImage(galleryItem); };
+            nextButton.onclick = function() { nextImage(galleryItem); };
             image.src = src;
                     
             image.style.animation = "fadeIn 1.5s";
