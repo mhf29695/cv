@@ -29,11 +29,11 @@
                     <h1 id="image-title"></h1>
                     <button type="button" class="close" onclick='closeImage()' tabindex="0"></button>
                 </header>
-                <button type="button" class="prev" id="prev">&#8249;</button>
+                <button type="button" class="prev" id="prev-photo">&#8249;</button>
                 <div id="image-container">
                     <img id="image" style="cursor: zoom-in;" onclick="zoomImage()"/>
                 </div>
-                <button type="button" class="next" id="next">&#8250;</button>
+                <button type="button" class="next" id="next-photo">&#8250;</button>
             </div>
         </div>
         
@@ -53,33 +53,93 @@
             </nav>
         </header>
         <main id="main">
-            <h1 class="title">Photo Gallery</h1>
-            <div id="gallery">
-                <div class="gallery-item" onclick="openImage(this)">
-                    <div class="overlay">View</div>
-                    <img src="gallery/DSC_6766.png" alt="DSC_6766.png" />
+            <section id="film">
+                <h1 class="title">Film Showcase</h1>
+                <div id="carousel">
+                    <div id="player">
+                        <video controls id="video" src="">
+                        </video>
+                            <p id="video-title"></p>
+                        </div>
+                    <div id="carousel-bar" class="carousel-bar">
+                        <button type="button" class="prev" id="prev-video" onclick="prevVideo()">&#8249;</button>
+                        <div id="thumbnail-container">
+                            <div id="thumbnails">
+                                <div class="carousel-item" onclick="focusVideo(this)">
+                                    <video poster src="videos/No Time to Pie Final.mp4">
+                                        No Time to Pie Final
+                                    </video>
+                                </div>
+                                <div class="carousel-item" onclick="focusVideo(this)">
+                                    <video poster src="videos/No Time to Pie Final.mp4">
+                                        No Time to Pie Final
+                                    </video>
+                                </div>
+                                <div class="carousel-item" onclick="focusVideo(this)">
+                                    <video poster src="videos/No Time to Pie Final.mp4">
+                                        No Time to Pie Final
+                                    </video>
+                                </div>
+                                <div class="carousel-item" onclick="focusVideo(this)">
+                                    <video poster src="videos/No Time to Pie Final.mp4">
+                                        No Time to Pie Final
+                                    </video>
+                                </div>
+                                <div class="carousel-item" onclick="focusVideo(this)">
+                                    <video poster src="videos/No Time to Pie Final.mp4">
+                                        No Time to Pie Final
+                                    </video>
+                                </div>
+                                <div class="carousel-item" onclick="focusVideo(this)">
+                                    <video poster src="videos/No Time to Pie Final.mp4">
+                                        No Time to Pie Final
+                                    </video>
+                                </div>
+                                <div class="carousel-item" onclick="focusVideo(this)">
+                                    <video poster src="videos/No Time to Pie Final.mp4">
+                                        No Time to Pie Final
+                                    </video>
+                                </div>
+                                <div class="carousel-item" onclick="focusVideo(this)">
+                                    <video poster src="videos/No Time to Pie Final.mp4">
+                                        No Time to Pie Final
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="next" id="next-video" onclick="nextVideo()">&#8250;</button>
+                    </div>
                 </div>
-                <div class="gallery-item" onclick="openImage(this)">
-                    <div class="overlay">View</div>
-                    <img src="gallery/DSC_6877.png" alt="DSC_6877.png" />
+            </section>
+            <section id="photography">
+                <h1 class="title">Photo Gallery</h1>
+                <div id="gallery">
+                    <div class="gallery-item" onclick="openImage(this)">
+                        <div class="overlay">View</div>
+                        <img src="gallery/DSC_6766.png" alt="DSC_6766.png" />
+                    </div>
+                    <div class="gallery-item" onclick="openImage(this)">
+                        <div class="overlay">View</div>
+                        <img src="gallery/DSC_6877.png" alt="DSC_6877.png" />
+                    </div>
+                    <div class="gallery-item" onclick="openImage(this)">
+                        <div class="overlay">View</div>
+                        <img src="gallery/DSC_6886.png" alt="DSC_6886.png" />
+                    </div>
+                    <div class="gallery-item" onclick="openImage(this)">
+                        <div class="overlay">View</div>
+                        <img src="gallery/DSC_6902.png" alt="DSC_6902.png" />
+                    </div>
+                    <div class="gallery-item" onclick="openImage(this)">
+                        <div class="overlay">View</div>
+                        <img src="gallery/DSC_7052.png" alt="DSC_7052.png" />
+                    </div>
+                    <div class="gallery-item" onclick="openImage(this)">
+                        <div class="overlay">View</div>
+                        <img src="gallery/DSC_7082.png" alt="DSC_7082.png" />
+                    </div>
                 </div>
-                <div class="gallery-item" onclick="openImage(this)">
-                    <div class="overlay">View</div>
-                    <img src="gallery/DSC_6886.png" alt="DSC_6886.png" />
-                </div>
-                <div class="gallery-item" onclick="openImage(this)">
-                    <div class="overlay">View</div>
-                    <img src="gallery/DSC_6902.png" alt="DSC_6902.png" />
-                </div>
-                <div class="gallery-item" onclick="openImage(this)">
-                    <div class="overlay">View</div>
-                    <img src="gallery/DSC_7052.png" alt="DSC_7052.png" />
-                </div>
-                <div class="gallery-item" onclick="openImage(this)">
-                    <div class="overlay">View</div>
-                    <img src="gallery/DSC_7082.png" alt="DSC_7082.png" />
-                </div>
-            </div>
+            </section>
         </main>
     <footer id="footer">
         <span><a href="contact.html">Miles Hayden Flores</a> &copy; 2026</span>
@@ -88,16 +148,6 @@
     </footer>
     </body>
     <script>  
-        jQuery(document).ready(function($){ // wait for the document to load
-            $("#main").css({
-                    'margin-top' : $('.nav-header').outerHeight() + 'px'
-            });
-        });
-        $(window).resize(function(){
-            $("#main").css({
-                    'margin-top' : $('.nav-header').outerHeight() + 'px'
-            });
-        });
         const viewer = document.getElementById("viewer");
         const main = document.getElementById("main");
         const header = document.getElementById("header");
@@ -105,8 +155,44 @@
         const pageBlur = document.getElementById("blur");
         const image = document.getElementById("image");
         const gallery = document.getElementById("gallery");
-        const prevButton = document.getElementById("prev");
-        const nextButton = document.getElementById("next");
+        const prevButton = document.getElementById("prev-photo");
+        const nextButton = document.getElementById("next-photo");
+
+        const video = document.getElementById("video");
+        const videoList = document.getElementById("thumbnails");
+
+        const offset = (videoList.children.length % 2 == 0) ? 1.5 : 0;
+
+        jQuery(document).ready(function($){ // wait for the document to load
+            $("#main").css({
+                    'margin-top' : $('.nav-header').outerHeight() + 'px'
+            });
+            $("#thumbnails").css({
+                    'margin' : (offset != 0) ? '0 -' + $('.carousel-item').outerWidth() * .5 + 'px 0 -' + $('.carousel-item').outerWidth() * offset + 'px' : '0 -' + $('.carousel-item').outerWidth() * .5 + 'px'
+            });
+        });
+        $(window).resize(function(){
+            $("#main").css({
+                    'margin-top' : $('.nav-header').outerHeight() + 'px'
+            });
+            $("#thumbnails").css({
+                    'margin' : (offset != 0) ? '0 -' + $('.carousel-item').outerWidth() * .5 + 'px 0 -' + $('.carousel-item').outerWidth() * offset + 'px' : '0 -' + $('.carousel-item').outerWidth() * .5 + 'px'
+            });
+        });
+
+        if (videoList.children.length == 2) {
+            const fauxEnd = videoList.lastElementChild.cloneNode(true);
+            videoList.insertBefore(fauxEnd, videoList.children[0]);
+        }
+
+        let i = parseInt(videoList.children.length / 2);
+        for (let elem of videoList.children) {
+            elem.style.order = i % videoList.children.length;
+
+        console.log(elem.style.order)
+            i++;
+        }
+
         var timeout = null;
 
         pageBlur.addEventListener("keydown", function(event) {
@@ -222,6 +308,14 @@
             x = x - window.pageXOffset;
             y = y - window.pageYOffset;
             return {x : x, y : y};
+        }
+
+        function focusVideo(carouselItem) {
+            this.video = carouselItem.children[0];
+            if (this.video.src != video.src) {
+                video.src = this.video.src;
+                document.getElementById("video-title").innerText = this.video.innerHTML;
+            }
         }
     </script>
 </html>
