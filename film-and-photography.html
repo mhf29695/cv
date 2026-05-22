@@ -72,24 +72,6 @@
                                     data-desc="Directed, edited, and shot by Miles Flores">
                                     <img src="" onerror="missing(this)" />
                                 </div>
-                                <div class="carousel-item" onclick="focusVideo(this)"
-                                    data-source="ezr5SIAKWjk"
-                                    data-title="Berlin"
-                                    data-desc="Directed, edited, and shot by Miles Flores">
-                                    <img src="" onerror="missing(this)"/>
-                                </div>
-                                <div class="carousel-item" onclick="focusVideo(this)"
-                                    data-source="-8SH7zcFNRU"
-                                    data-title="Blegh"
-                                    data-desc="Directed, edited, and shot by Miles Flores">
-                                    <img src="" onerror="missing(this)"/>
-                                </div>
-                                <div class="carousel-item" onclick="focusVideo(this)"
-                                    data-source="WU2ejLnyKoY"
-                                    data-title="WOW"
-                                    data-desc="Directed, edited, and shot by Miles Flores">
-                                    <img src="" onerror="missing(this)"/>
-                                </div>
                             </div>
                         </div>
                         <div class="button-container" id="next-button" onclick="nextVideo()">
@@ -328,13 +310,13 @@
         }
 
         let l = parseInt(videoList.children.length);
-        let i = videoList.children.length - 1;
+        let i = l - 1 + ((l == 2) ? 1 : 0);
         let tempList = new DocumentFragment();
         if (l > 1) {
             for (let elem of videoList.children) {
                 elem.firstElementChild.src = "https://img.youtube.com/vi/" + elem.getAttribute("data-source") + "/maxresdefault.jpg";
                 let tempNode = elem.cloneNode(true)
-                tempNode.style.order = (l + ++i + ((l==2) ? 1 : 0)) % (l * 2);
+                tempNode.style.order = (l + ++i) % (l * 2 + ((l == 2) ? 2 : 0));
                 tempList.append(tempNode);
             }
         } else {
@@ -347,14 +329,14 @@
 
         if (l == 2) {
             let fauxEnd = videoList.firstElementChild.cloneNode(true);
-            fauxEnd.style.order = 4;
+            fauxEnd.style.order = (l + ++i) % (l * 2 + ((l == 2) ? 2 : 0));
             tempList.append(fauxEnd);
             fauxEnd = videoList.lastElementChild.cloneNode(true);
-            fauxEnd.style.order = 5;
+            fauxEnd.style.order = (l + ++i) % (l * 2 + ((l == 2) ? 2 : 0));;
             tempList.append(fauxEnd);
         }
         for (let elem of videoList.children) {
-            elem.style.order = (l + ++i) % (l * 2);
+            elem.style.order = (l + ++i) % (l * 2 + ((l == 2) ? 2 : 0));
         }
         videoList.append(tempList);
         updateFocus(videoList.firstElementChild);

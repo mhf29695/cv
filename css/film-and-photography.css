@@ -177,7 +177,7 @@
    content: ' ';
    z-index: 1;
    height: 100%;
-   width: 120px;
+   width: 100px;
    pointer-events: none;
    cursor: pointer;
 }
@@ -309,6 +309,8 @@
    aspect-ratio: 16 / 9;
    background-color: #000;
    align-self: center;
+   min-width: 100%;
+   margin: 0 .5em;
 }
 .carousel-item {
    height: min-content;
@@ -318,7 +320,7 @@
 
 .carousel-item img {
    min-width: 150px;
-   max-width: 300px;
+   max-width: 250px;
    width: 50vmin;
    display: block;
 }
@@ -351,7 +353,7 @@
    display: flex;
    flex-direction: column;
    gap: .5em;
-   margin: 1em;
+   margin: .5em;
 }
 #video-info p {
    margin: 0;
