@@ -57,9 +57,8 @@
                 <h1 class="title">Film Showcase</h1>
                 <div id="carousel">
                     <div id="player">
-                        <video controls id="video" src="">
-                        </video>
-                            <div id="video-info"></div> <!-- FIX TO BE YOUTUBE VIDEOS -->
+                        <iframe id="video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div id="video-info"></div> <!-- FIX TO BE YOUTUBE VIDEOS -->
                         </div>
                     <div id="carousel-bar" class="carousel-bar">
                         <div class="button-container" id="prev-button" onclick="prevVideo()">
@@ -67,17 +66,29 @@
                         </div>
                         <div id="thumbnail-container">
                             <div id="thumbnails">
-                                <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4" loading="lazy">
-                                        <h3>No Time to Pie</h3>
-                                        <p>Directed, edited, and shot by Miles Flores</p>
-                                    </video>
+                                <div class="carousel-item" onclick="focusVideo(this)"
+                                    data-source="H5c3rAXUH2c"
+                                    data-title="No Time to Pie"
+                                    data-desc="Directed, edited, and shot by Miles Flores">
+                                    <img src="" onerror="missing(this)" />
                                 </div>
-                                <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4" loading="lazy">
-                                        <h3>No Time to Pie</h3>
-                                        <p>Directed, edited, and shot by Miles Flores</p>
-                                    </video>
+                                <div class="carousel-item" onclick="focusVideo(this)"
+                                    data-source="ezr5SIAKWjk"
+                                    data-title="Berlin"
+                                    data-desc="Directed, edited, and shot by Miles Flores">
+                                    <img src="" onerror="missing(this)"/>
+                                </div>
+                                <div class="carousel-item" onclick="focusVideo(this)"
+                                    data-source="-8SH7zcFNRU"
+                                    data-title="Blegh"
+                                    data-desc="Directed, edited, and shot by Miles Flores">
+                                    <img src="" onerror="missing(this)"/>
+                                </div>
+                                <div class="carousel-item" onclick="focusVideo(this)"
+                                    data-source="WU2ejLnyKoY"
+                                    data-title="WOW"
+                                    data-desc="Directed, edited, and shot by Miles Flores">
+                                    <img src="" onerror="missing(this)"/>
                                 </div>
                             </div>
                         </div>
@@ -255,29 +266,31 @@
         }
 
         function moveCarousel(offset) {
+            var slide = [
+                { transform: "translateX(" + $('.carousel-item').outerWidth() * offset * -1 + "px)" },
+                { transform: "translateX(0px)" }
+            ]
+            video.src="";
             document.getElementById("carousel-bar").setAttribute("inert", '');
             $("#thumbnails").css({
-                'transform': 'unset'
+                'animation': 'unset'
             });
             document.getElementById("thumbnails").offsetHeight;
             $("#thumbnails").css({
                 'margin-top': '.6em',
                 'margin-bottom': '.6em',
-                'transition': 'transform 1s',
-                'transform': 'translateX(' + $('.carousel-item').outerWidth() * offset + 'px)'
             });
+            document.getElementById("thumbnails").animate(slide, { duration: 1000, easing: "ease" })
             for (let elem of videoList.children) {
                 elem.style.order = (parseInt(elem.style.order) + offset + videoList.children.length) % videoList.children.length;
                 elem.classList.remove("selected");
-                if (elem.style.order == parseInt(videoList.children.length / 2 - (videoList.children.length / 2 % 2))) {
+                if (elem.style.order == parseInt(videoList.children.length / 2)) {
                     clearTimeout(timeout);
                     timeout = setTimeout(function(){
                         updateFocus(elem);
                         $("#thumbnails").css({
                             'margin-top': '0px',
                             'margin-bottom': '0px',
-                            'transition': 'transform 0s',
-                            'transform': 'unset'
                         });
                         document.getElementById("carousel-bar").removeAttribute("inert");
                     }, 1000)
@@ -287,10 +300,11 @@
 
         function updateFocus(carouselItem) {
             carouselItem.classList.add("selected");
-            this.video = carouselItem.children[0];
             // video.style.aspectRatio = this.video.naturalWidth / this.video.naturalHeight; FIGURE THIS OUT
-            video.src = this.video.src;
-            document.getElementById("video-info").innerHTML = this.video.innerHTML;
+            video.src = "https://www.youtube.com/embed/" + carouselItem.getAttribute("data-source");
+            document.getElementById("video-info").innerHTML =
+                "<h4>" + carouselItem.getAttribute("data-title") + "</h4>"
+                + "<p>" + carouselItem.getAttribute("data-desc") + "</p>";
         }
 
         function focusVideo(carouselItem) {
@@ -307,46 +321,62 @@
         function prevVideo() {
             moveCarousel(1);
         }
+        
+        function missing(img) {
+            img.classList.add('missing');
+            img.src = ' ';
+        }
 
-        let i = parseInt(videoList.children.length / 2);
+        let l = parseInt(videoList.children.length);
+        let i = videoList.children.length - 1;
         let tempList = new DocumentFragment();
-        if (videoList.children.length > 1) {
+        if (l > 1) {
             for (let elem of videoList.children) {
+                elem.firstElementChild.src = "https://img.youtube.com/vi/" + elem.getAttribute("data-source") + "/maxresdefault.jpg";
                 let tempNode = elem.cloneNode(true)
-                tempNode.style.order =  (videoList.children.length + i++) % (videoList.children.length * 2);
+                tempNode.style.order = (l + ++i + ((l==2) ? 1 : 0)) % (l * 2);
                 tempList.append(tempNode);
+            }
+        } else {
+            let video = videoList.firstElementChild;
+            video.firstElementChild.src = "https://img.youtube.com/vi/" + video.getAttribute("data-source") + "/maxresdefault.jpg";
+            for (let button of document.getElementsByClassName('button-container')) {
+                button.classList.add("hidden");
             }
         }
 
-        for (let elem of videoList.children) {
-            elem.style.order = i++ % videoList.children.length + parseInt(videoList.children.length / 2);
-        }
-        if (videoList.children.length == 2) {
-            var fauxEnd = videoList.lastElementChild.cloneNode(true);
+        if (l == 2) {
+            let fauxEnd = videoList.firstElementChild.cloneNode(true);
             fauxEnd.style.order = 4;
-            videoList.append(fauxEnd);
+            tempList.append(fauxEnd);
+            fauxEnd = videoList.lastElementChild.cloneNode(true);
+            fauxEnd.style.order = 5;
+            tempList.append(fauxEnd);
+        }
+        for (let elem of videoList.children) {
+            elem.style.order = (l + ++i) % (l * 2);
         }
         videoList.append(tempList);
         updateFocus(videoList.firstElementChild);
 
         jQuery(document).ready(function($){ // wait for the document to load
             let l = (videoList.children.length <= 5) ? 0 : videoList.children.length;
-            var marginOffset = (l % 2 == 0 && l > 6) ? ' 0 -' + $('.carousel-item').outerWidth() * (1.5 + l / 4) + 'px' : ' 0 -' + $('.carousel-item').outerWidth() * (1.5) + 'px';
+            var marginOffset = (l % 2 == 0 && l > 6) ? ' 0 -' + $('.carousel-item').outerWidth() * (1.5 + l / 4) + 'px' : ' 0 -' + $('.carousel-item').outerWidth() * (1 + l / 4) + 'px';
             $("#main").css({
                     'margin-top' : $('.nav-header').outerHeight() + 'px'
             });
             $("#thumbnails").css({
-                    'margin' : (videoList.children.length != 1) ? '0 -' + $('.carousel-item').outerWidth() * (.5 + (l / 4) + ((l == 6) ? .5 : 0) + ((l == 0) ? 1 : 0)) + 'px' + ((l >= 0) ? marginOffset : '') : ''
+                    'margin' : (videoList.children.length != 1) ? '0 -' + $('.carousel-item').outerWidth() * (.5 + (l / 4) + ((l == 6) ? -.5 : 0) + ((l == 0) ? 1 : 0)) + 'px' + ((l >= 0) ? marginOffset : '') : ''
             });
         });
         $(window).resize(function(){
             let l = (videoList.children.length <= 5) ? 0 : videoList.children.length;
-            var marginOffset = (l % 2 == 0 && l > 6) ? ' 0 -' + $('.carousel-item').outerWidth() * (1.5 + l / 4) + 'px' : ' 0 -' + $('.carousel-item').outerWidth() * (1.5) + 'px';
+            var marginOffset = (l % 2 == 0 && l > 6) ? ' 0 -' + $('.carousel-item').outerWidth() * (1.5 + l / 4) + 'px' : ' 0 -' + $('.carousel-item').outerWidth() * (1 + l / 4) + 'px';
             $("#main").css({
                     'margin-top' : $('.nav-header').outerHeight() + 'px'
             });
             $("#thumbnails").css({
-                    'margin' : (videoList.children.length != 1) ? '0 -' + $('.carousel-item').outerWidth() * (.5 + (l / 4) + ((l == 6) ? .5 : 0) + ((l == 0) ? 1 : 0)) + 'px' + ((l >= 0) ? marginOffset : '') : ''
+                    'margin' : (videoList.children.length != 1) ? '0 -' + $('.carousel-item').outerWidth() * (.5 + (l / 4) + ((l == 6) ? -.5 : 0) + ((l == 0) ? 1 : 0)) + 'px' + ((l >= 0) ? marginOffset : '') : ''
             });
         });
     </script>

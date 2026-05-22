@@ -307,6 +307,8 @@
 #video {
    width: 70vmin;
    aspect-ratio: 16 / 9;
+   background-color: #000;
+   align-self: center;
 }
 .carousel-item {
    height: min-content;
@@ -314,21 +316,22 @@
    cursor: pointer;
 }
 
-.carousel-item video {
+.carousel-item img {
    min-width: 150px;
    max-width: 300px;
    width: 50vmin;
    display: block;
 }
 
-@keyframes slide {
-   0% {
-      transform: translateX(150px);
-   }
-   100% {
-      transform: translateX(0px);
-   }
+.missing {
+   background-color: rgba(0, 0, 0, 0.1);
+   aspect-ratio: 16 / 9;
 }
+
+.hidden {
+   display: none;
+}
+
 /* FIGURE OUT HOW TO MAKE ORDER 4 SPECIFIC */
 .selected {
    opacity: 1;
