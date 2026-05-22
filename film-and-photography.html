@@ -59,55 +59,31 @@
                     <div id="player">
                         <video controls id="video" src="">
                         </video>
-                            <p id="video-title"></p>
+                            <div id="video-info"></div> <!-- FIX TO BE YOUTUBE VIDEOS -->
                         </div>
                     <div id="carousel-bar" class="carousel-bar">
-                        <button type="button" class="prev" id="prev-video" onclick="prevVideo()">&#8249;</button>
+                        <div class="button-container" id="prev-button" onclick="prevVideo()">
+                            <button type="button" class="prev">&#8249;</button>
+                        </div>
                         <div id="thumbnail-container">
                             <div id="thumbnails">
                                 <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4">
-                                        No Time to Pie Final
+                                    <video poster src="videos/No Time to Pie Final.mp4" loading="lazy">
+                                        <h3>No Time to Pie</h3>
+                                        <p>Directed, edited, and shot by Miles Flores</p>
                                     </video>
                                 </div>
                                 <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4">
-                                        No Time to Pie Final
-                                    </video>
-                                </div>
-                                <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4">
-                                        No Time to Pie Final
-                                    </video>
-                                </div>
-                                <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4">
-                                        No Time to Pie Final
-                                    </video>
-                                </div>
-                                <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4">
-                                        No Time to Pie Final
-                                    </video>
-                                </div>
-                                <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4">
-                                        No Time to Pie Final
-                                    </video>
-                                </div>
-                                <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4">
-                                        No Time to Pie Final
-                                    </video>
-                                </div>
-                                <div class="carousel-item" onclick="focusVideo(this)">
-                                    <video poster src="videos/No Time to Pie Final.mp4">
-                                        No Time to Pie Final
+                                    <video poster src="videos/No Time to Pie Final.mp4" loading="lazy">
+                                        <h3>No Time to Pie</h3>
+                                        <p>Directed, edited, and shot by Miles Flores</p>
                                     </video>
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="next" id="next-video" onclick="nextVideo()">&#8250;</button>
+                        <div class="button-container" id="next-button" onclick="nextVideo()">
+                            <button type="button" class="next">&#8250;</button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -160,38 +136,6 @@
 
         const video = document.getElementById("video");
         const videoList = document.getElementById("thumbnails");
-
-        const offset = (videoList.children.length % 2 == 0) ? 1.5 : 0;
-
-        jQuery(document).ready(function($){ // wait for the document to load
-            $("#main").css({
-                    'margin-top' : $('.nav-header').outerHeight() + 'px'
-            });
-            $("#thumbnails").css({
-                    'margin' : (offset != 0) ? '0 -' + $('.carousel-item').outerWidth() * .5 + 'px 0 -' + $('.carousel-item').outerWidth() * offset + 'px' : '0 -' + $('.carousel-item').outerWidth() * .5 + 'px'
-            });
-        });
-        $(window).resize(function(){
-            $("#main").css({
-                    'margin-top' : $('.nav-header').outerHeight() + 'px'
-            });
-            $("#thumbnails").css({
-                    'margin' : (offset != 0) ? '0 -' + $('.carousel-item').outerWidth() * .5 + 'px 0 -' + $('.carousel-item').outerWidth() * offset + 'px' : '0 -' + $('.carousel-item').outerWidth() * .5 + 'px'
-            });
-        });
-
-        if (videoList.children.length == 2) {
-            const fauxEnd = videoList.lastElementChild.cloneNode(true);
-            videoList.insertBefore(fauxEnd, videoList.children[0]);
-        }
-
-        let i = parseInt(videoList.children.length / 2);
-        for (let elem of videoList.children) {
-            elem.style.order = i % videoList.children.length;
-
-        console.log(elem.style.order)
-            i++;
-        }
 
         var timeout = null;
 
@@ -310,12 +254,100 @@
             return {x : x, y : y};
         }
 
-        function focusVideo(carouselItem) {
-            this.video = carouselItem.children[0];
-            if (this.video.src != video.src) {
-                video.src = this.video.src;
-                document.getElementById("video-title").innerText = this.video.innerHTML;
+        function moveCarousel(offset) {
+            document.getElementById("carousel-bar").setAttribute("inert", '');
+            $("#thumbnails").css({
+                'transform': 'unset'
+            });
+            document.getElementById("thumbnails").offsetHeight;
+            $("#thumbnails").css({
+                'margin-top': '.6em',
+                'margin-bottom': '.6em',
+                'transition': 'transform 1s',
+                'transform': 'translateX(' + $('.carousel-item').outerWidth() * offset + 'px)'
+            });
+            for (let elem of videoList.children) {
+                elem.style.order = (parseInt(elem.style.order) + offset + videoList.children.length) % videoList.children.length;
+                elem.classList.remove("selected");
+                if (elem.style.order == parseInt(videoList.children.length / 2 - (videoList.children.length / 2 % 2))) {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(function(){
+                        updateFocus(elem);
+                        $("#thumbnails").css({
+                            'margin-top': '0px',
+                            'margin-bottom': '0px',
+                            'transition': 'transform 0s',
+                            'transform': 'unset'
+                        });
+                        document.getElementById("carousel-bar").removeAttribute("inert");
+                    }, 1000)
+                }
             }
         }
+
+        function updateFocus(carouselItem) {
+            carouselItem.classList.add("selected");
+            this.video = carouselItem.children[0];
+            // video.style.aspectRatio = this.video.naturalWidth / this.video.naturalHeight; FIGURE THIS OUT
+            video.src = this.video.src;
+            document.getElementById("video-info").innerHTML = this.video.innerHTML;
+        }
+
+        function focusVideo(carouselItem) {
+            let offset = parseInt(videoList.children.length / 2) - carouselItem.style.order;
+            if (offset != 0) {
+                moveCarousel(offset);
+            }
+        }
+
+        function nextVideo() {
+            moveCarousel(-1);
+        }
+
+        function prevVideo() {
+            moveCarousel(1);
+        }
+
+        let i = parseInt(videoList.children.length / 2);
+        let tempList = new DocumentFragment();
+        if (videoList.children.length > 1) {
+            for (let elem of videoList.children) {
+                let tempNode = elem.cloneNode(true)
+                tempNode.style.order =  (videoList.children.length + i++) % (videoList.children.length * 2);
+                tempList.append(tempNode);
+            }
+        }
+
+        for (let elem of videoList.children) {
+            elem.style.order = i++ % videoList.children.length + parseInt(videoList.children.length / 2);
+        }
+        if (videoList.children.length == 2) {
+            var fauxEnd = videoList.lastElementChild.cloneNode(true);
+            fauxEnd.style.order = 4;
+            videoList.append(fauxEnd);
+        }
+        videoList.append(tempList);
+        updateFocus(videoList.firstElementChild);
+
+        jQuery(document).ready(function($){ // wait for the document to load
+            let l = (videoList.children.length <= 5) ? 0 : videoList.children.length;
+            var marginOffset = (l % 2 == 0 && l > 6) ? ' 0 -' + $('.carousel-item').outerWidth() * (1.5 + l / 4) + 'px' : ' 0 -' + $('.carousel-item').outerWidth() * (1.5) + 'px';
+            $("#main").css({
+                    'margin-top' : $('.nav-header').outerHeight() + 'px'
+            });
+            $("#thumbnails").css({
+                    'margin' : (videoList.children.length != 1) ? '0 -' + $('.carousel-item').outerWidth() * (.5 + (l / 4) + ((l == 6) ? .5 : 0) + ((l == 0) ? 1 : 0)) + 'px' + ((l >= 0) ? marginOffset : '') : ''
+            });
+        });
+        $(window).resize(function(){
+            let l = (videoList.children.length <= 5) ? 0 : videoList.children.length;
+            var marginOffset = (l % 2 == 0 && l > 6) ? ' 0 -' + $('.carousel-item').outerWidth() * (1.5 + l / 4) + 'px' : ' 0 -' + $('.carousel-item').outerWidth() * (1.5) + 'px';
+            $("#main").css({
+                    'margin-top' : $('.nav-header').outerHeight() + 'px'
+            });
+            $("#thumbnails").css({
+                    'margin' : (videoList.children.length != 1) ? '0 -' + $('.carousel-item').outerWidth() * (.5 + (l / 4) + ((l == 6) ? .5 : 0) + ((l == 0) ? 1 : 0)) + 'px' + ((l >= 0) ? marginOffset : '') : ''
+            });
+        });
     </script>
 </html>

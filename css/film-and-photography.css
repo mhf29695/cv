@@ -144,6 +144,9 @@
    opacity: 0.5;
    height: min-content;
    align-self: center;
+   padding: 0;
+   position: relative;
+   z-index: 2;
 }
 #viewer .prev,
 #viewer .next {
@@ -151,11 +154,48 @@
 }
 #viewer .prev {
    padding-left: .33em;;
+   padding-right: .1em;;
 }
 #viewer .next {
    grid-column: 3 / 4; 
    padding-right: .33em;
+   padding-left: .1em;;
 }
+
+
+#carousel .next,
+#carousel .prev {
+   height: 100%;
+}
+.button-container {
+   position: relative;
+   cursor: pointer;
+}
+#prev-button::before,
+#next-button::after {
+   position: absolute;
+   content: ' ';
+   z-index: 1;
+   height: 100%;
+   width: 120px;
+   pointer-events: none;
+   cursor: pointer;
+}
+
+#next-button::after {
+   background: linear-gradient(to right, #ffffff00 0%, #ffffff 100%);
+   right: 1em;
+   top: 0;
+}
+#prev-button::before {
+   background: linear-gradient(to left, #ffffff00 0%, #ffffff 100%);
+   left: 1em;
+   top: 0;
+}
+
+
+
+
 
 #blur {
    position: fixed;
@@ -240,6 +280,7 @@
    display: flex;
    flex-direction: column;
    align-items: center;
+   margin-bottom: 1em;
 }
 
 #carousel-bar {
@@ -255,35 +296,22 @@
    justify-items: center;
 }
 
-#thumbnail-container::before {
-   position: absolute;
-   content: ' ';
-   background: linear-gradient(to left, #ffffff00 0%, #ffffff 100%);
-   height: 100%;
-   width: 120px;
-}
-#thumbnail-container::after {
-   position: absolute;
-   content: ' ';
-   background: linear-gradient(to right, #ffffff00 0%, #ffffff 100%);
-   height: 100%;
-   right: 0;
-   top: 0;
-   width: 120px;
-}
-
 #thumbnails {
    display: grid;
    grid-auto-flow: column;
    column-gap: 5px;
    width: max-content;
+   align-items: center;
 }
 
 #video {
    width: 70vmin;
+   aspect-ratio: 16 / 9;
 }
 .carousel-item {
    height: min-content;
+   opacity: .5;
+   cursor: pointer;
 }
 
 .carousel-item video {
@@ -291,4 +319,37 @@
    max-width: 300px;
    width: 50vmin;
    display: block;
+}
+
+@keyframes slide {
+   0% {
+      transform: translateX(150px);
+   }
+   100% {
+      transform: translateX(0px);
+   }
+}
+/* FIGURE OUT HOW TO MAKE ORDER 4 SPECIFIC */
+.selected {
+   opacity: 1;
+   border-bottom: .3em solid;
+   border-image: linear-gradient(to right, transparent 25%, #993b3b 25%, #993b3b 75%, transparent 75% ) 12%;
+   transition: border-image .4s;
+   padding: .6em 0 .3em 0;
+}
+
+#player {
+   justify-items: center;
+   display: flex;
+   flex-direction: column;
+}
+
+#video-info {
+   display: flex;
+   flex-direction: column;
+   gap: .5em;
+   margin: 1em;
+}
+#video-info p {
+   margin: 0;
 }
