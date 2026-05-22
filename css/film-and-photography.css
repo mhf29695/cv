@@ -24,7 +24,7 @@
    justify-content: center;
    align-items: center;
    font-size: 2em;
-   color: #fff;
+   color: var(--dark-bg-font-color);
 }
 
 .gallery-item .overlay:hover {
@@ -153,7 +153,7 @@
    content: '';
    height: 33px;
    width: .16em;
-   background-color: #ffffff;
+   background-color: var(--primary-bg-color);
 }
 .close:before {
    transform: rotate(45deg);
@@ -168,18 +168,60 @@
    background-color: unset;
    border: unset;
    opacity: 0.5;
-   color: #fff;
-   grid-row: 2 / 3;
    height: min-content;
    align-self: center;
+   padding: 0;
+   position: relative;
+   z-index: 2;
 }
-.prev {
+#viewer .prev,
+#viewer .next {
+   grid-row: 2 / 3;
+}
+#viewer .prev {
    padding-left: .33em;;
+   padding-right: .1em;;
 }
-.next {
+#viewer .next {
    grid-column: 3 / 4; 
    padding-right: .33em;
+   padding-left: .1em;;
 }
+
+
+#carousel .next,
+#carousel .prev {
+   height: 100%;
+}
+.button-container {
+   position: relative;
+   cursor: pointer;
+}
+#prev-button::before,
+#next-button::after {
+   position: absolute;
+   content: ' ';
+   z-index: 1;
+   height: 100%;
+   width: 100px;
+   pointer-events: none;
+   cursor: pointer;
+}
+
+#next-button::after {
+   background: linear-gradient(to right, transparent 0%, var(--primary-bg-color) 100%);
+   right: 1em;
+   top: 0;
+}
+#prev-button::before {
+   background: linear-gradient(to left, transparent 0%, var(--primary-bg-color) 100%);
+   left: 1em;
+   top: 0;
+}
+
+
+
+
 
 #blur {
    position: fixed;
@@ -198,27 +240,30 @@
    position: absolute;
    top: 50%;
    left: 50%;
-   color: rgb(0, 0, 0);
    transform: translate(-50%, -50%);
    z-index: 999;
    animation: fadeIn 1.5s;
-   width: 100%;
    max-width: 100vmin;
    display: grid;
    grid-template: auto auto / auto auto auto;
+}
+
+#viewer * {
+   color: #fff;
 }
 
 #blur:focus-visible, #viewer:focus-visible {
    outline: none;
 }
 
-#viewer img {
+#image-container img {
    object-fit: contain;
    cursor: zoom-in;
    max-width: 100%;
    max-height: 100%;
    transform-origin: top left;
    display: block;
+   justify-self: center;
 }
 
 #viewer header {
@@ -230,7 +275,6 @@
 
 #viewer h1 {
    margin: 0px;
-   color: #fff;
    text-align: left;
    text-overflow: ellipsis;
    white-space: nowrap;
@@ -242,9 +286,101 @@
    position: relative;
    min-width: 300px;
    grid-row: 2 / 3;
+   max-height: 80vh;
+   width: max-content;
+   max-width: calc(100vmin - 5em);
 }
+
+#main .title {
+   margin-bottom: .5em;
+   font-size: 2em;
+}
+
 @media screen and (max-width: 600px) {
    #gallery {
       grid-template-columns: repeat(2, minmax(150px, 1fr));
    }
+}
+
+#carousel {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 1em;
+}
+
+#carousel-bar {
+   display: grid;
+   grid-template-columns: auto auto auto
+}
+
+#thumbnail-container {
+   max-width: 90vw;
+   overflow: clip;
+   position: relative;
+   transform-origin: 50%;
+   justify-items: center;
+}
+
+#thumbnails {
+   display: grid;
+   grid-auto-flow: column;
+   column-gap: 5px;
+   width: max-content;
+   align-items: center;
+}
+
+#video {
+   width: 70vmin;
+   aspect-ratio: 16 / 9;
+   background-color: #000;
+   align-self: center;
+   min-width: 100%;
+   margin: 0 .5em;
+}
+.carousel-item {
+   height: min-content;
+   opacity: .5;
+   cursor: pointer;
+}
+
+.carousel-item img {
+   min-width: 150px;
+   max-width: 250px;
+   width: 50vmin;
+   display: block;
+}
+
+.missing {
+   background-color: rgba(0, 0, 0, 0.1);
+   aspect-ratio: 16 / 9;
+}
+
+.hidden {
+   display: none;
+}
+
+/* FIGURE OUT HOW TO MAKE ORDER 4 SPECIFIC */
+.selected {
+   opacity: 1;
+   border-bottom: .3em solid;
+   border-image: linear-gradient(to right, transparent 25%, #993b3b 25%, #993b3b 75%, transparent 75% ) 12%;
+   transition: border-image .4s;
+   padding: .6em 0 .3em 0;
+}
+
+#player {
+   justify-items: center;
+   display: flex;
+   flex-direction: column;
+}
+
+#video-info {
+   display: flex;
+   flex-direction: column;
+   gap: .5em;
+   margin: .5em;
+}
+#video-info p {
+   margin: 0;
 }

@@ -178,7 +178,7 @@ nav {
     max-width: 900px;
     width: 100%;
     font-family: "Red Hat Display", system-ui;
-    color: white;
+    color: var(--dark-bg-font-color);
     text-align: left;
     margin: 0 1em;
     padding: .5em 1em;
@@ -265,7 +265,7 @@ section > p, section dl {
 
 /* GENERIC CLASSES */
 .title {
-    font-size: 45px;
+    font-size: 2.5em;
     text-align: center;
 }
 .subtitle {
@@ -294,8 +294,8 @@ section > p, section dl {
     font-family: "Red Hat Display", system-ui;
     background-color: unset;
     border-width: 2px;
-    border-color: #333;
-    color: #333;
+    border-color: var(--primary-font-color);
+    color: var(--primary-font-color);
     font-size: 1em;
     margin: .5em;
     border-style: solid;
@@ -315,7 +315,7 @@ section > p, section dl {
     transition-duration: 0s;
 }
 .dropdown {
-    color: #333;
+    color: var(--primary-font-color);
     cursor: pointer;
     margin-bottom: .5em;
     padding: 0px .3em;
@@ -329,7 +329,7 @@ section > p, section dl {
     height: 10.5px;
     width: 10.5px;
     border-width: 0 2px 2px 0;
-    border-color: #333;
+    border-color: var(--primary-font-color);
     border-style: solid;
     transition-duration: 0.4s;
     transform: rotate(45deg) translateY(-4px);
@@ -373,12 +373,20 @@ section > p, section dl {
     font-weight: initial;
     list-style-type: circle;
 }
-.card img {
-    object-position: top;
-    object-fit: cover;
+.card .img-container {
     height: 200px;
     margin-bottom: .5em;
     animation: unset;
+    overflow: hidden;
+    justify-items: center;
+
+}
+.img-container img {
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 .definition {
     grid-column: 1 / 3;
@@ -394,14 +402,18 @@ section > p, section dl {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.306);
     transition: 0.4s;
     max-width: 600px;
-    color: white;
+    color: var(--dark-bg-font-color);
     background-color: var(--secondary-bg-color);
 }
 .card h3 {
-    color: white;
+    color: var(--dark-bg-font-color);
 }
 .card:hover {
     box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.306);
+}
+.card:hover img {
+    transform: scale(1);
+    transition-duration: .5s;
 }
 .text {
     padding: .25em 1em;
@@ -476,7 +488,7 @@ div.link {
     align-items: flex-start;
     gap: .5em;
 }
-#text :is(h1,h2,h3,h4,h5,p) {
+#info :is(h1,h2,h3,h4,h5,p) {
     text-align: left;
     margin: 0px;
 }
@@ -490,7 +502,7 @@ div.link {
     max-width: 150px;
     min-width: 100px;
     margin-right: 8px;
-    border: 3px solid #945353;
+    border: 3px solid var(--primary-accent-color);
 }
 #education {
     display: flex;
@@ -506,7 +518,7 @@ div.link {
     margin: 0px;
     padding-left: 1em;
 }
-#projects div {
+#projects > div {
     display: flex;
     flex-direction: column;
 }
@@ -533,11 +545,6 @@ div.link {
 @media only screen and (max-width: 1050px) and (min-width: 900px) {
     #projects {
         grid: auto / repeat(auto-fit, minmax(280px, 1fr));
-    }
-}
-@media only screen and (max-width: 900px) and (min-width: 400px) {
-    #projects {
-        grid: auto auto auto / min-content;
     }
 }
 @media only screen and (max-width: 500px) {
