@@ -26,7 +26,10 @@
         <div id="blur" tabindex="-1">
             <div id="viewer" tabindex="-1">
                 <header>
-                    <h1 id="image-title"></h1>
+                    <div id="image-info">
+                        <h1 id="image-title"></h1>
+                        <h2 id="image-subtitle"></h2>
+                    </div>
                     <button type="button" class="close" onclick='closeImage()' tabindex="0"></button>
                 </header>
                 <button type="button" class="prev" id="prev-photo">&#8249;</button>
@@ -59,7 +62,7 @@
                 <div id="carousel">
                     <div id="player">
                         <iframe id="video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <div id="video-info"></div> <!-- FIX TO BE YOUTUBE VIDEOS -->
+                        <div id="video-info"></div>
                         </div>
                     <div id="carousel-bar" class="carousel-bar">
                         <div class="button-container" id="prev-button" onclick="prevVideo()">
@@ -70,7 +73,12 @@
                                 <div class="carousel-item" onclick="focusVideo(this)"
                                     data-source="H5c3rAXUH2c"
                                     data-title="No Time to Pie"
-                                    data-desc="Directed, edited, and shot by Miles Flores">
+                                    data-desc="Directed, edited, and shot by Miles Flores.
+                                        <br />
+                                        <br />
+                                        Starring Joe Burke as Aaron, Wilhemina Quiroz as Bex.
+                                        <br />
+                                        Sound Recordist: Libby Rigelman">
                                     <img src="" onerror="missing(this)" />
                                 </div>
                             </div>
@@ -84,29 +92,41 @@
             <section id="photography">
                 <h1 class="title">Photo Gallery</h1>
                 <div id="gallery">
-                    <div class="gallery-item" onclick="openImage(this)">
+                    <div class="gallery-item" onclick="openImage(this)"
+                        data-title="Under the Gaze of Giants"
+                        data-subtitle="Silverton, CO, 2023">
                         <div class="overlay">View</div>
                         <img src="gallery/DSC_6766.png" alt="DSC_6766.png" />
                     </div>
-                    <div class="gallery-item" onclick="openImage(this)">
+                    <div class="gallery-item" onclick="openImage(this)"
+                        data-title="Abandoned Bridge"
+                        data-subtitle="Silverton, CO, 2023">
                         <div class="overlay">View</div>
-                        <img src="gallery/DSC_6877.png" alt="DSC_6877.png" />
+                        <img src="gallery/DSC_6877.png" alt="An old bridge sandwiched between mountains" />
                     </div>
-                    <div class="gallery-item" onclick="openImage(this)">
+                    <div class="gallery-item" onclick="openImage(this)"
+                        data-title="A Hidden Valley"
+                        data-subtitle="Silverton, CO, 2023">
                         <div class="overlay">View</div>
-                        <img src="gallery/DSC_6886.png" alt="DSC_6886.png" />
+                        <img src="gallery/DSC_6886.png" alt="A train going by a river in a valley" />
                     </div>
-                    <div class="gallery-item" onclick="openImage(this)">
+                    <div class="gallery-item" onclick="openImage(this)"
+                        data-title="In the Mountains?!"
+                        data-subtitle="Great Sand Dunes, CO, 2023">
                         <div class="overlay">View</div>
-                        <img src="gallery/DSC_6902.png" alt="DSC_6902.png" />
+                        <img src="gallery/DSC_6902.png" alt="Sand dunes with mountains in the background" />
                     </div>
-                    <div class="gallery-item" onclick="openImage(this)">
+                    <div class="gallery-item" onclick="openImage(this)"
+                        data-title="Early Morning with a Cow"
+                        data-subtitle="Sanbona Wildlife Reserve, SA, 2024">
                         <div class="overlay">View</div>
-                        <img src="gallery/DSC_7052.png" alt="DSC_7052.png" />
+                        <img src="gallery/DSC_7052.png" alt="A cow gazes over a field" />
                     </div>
-                    <div class="gallery-item" onclick="openImage(this)">
+                    <div class="gallery-item" onclick="openImage(this)"
+                        data-title="Town by the Oceanfront"
+                        data-subtitle="Table Mountain, Cape Town, SA, 2024">
                         <div class="overlay">View</div>
-                        <img src="gallery/DSC_7082.png" alt="DSC_7082.png" />
+                        <img src="gallery/DSC_7082.png" alt="A town by the ocean from atop a mountain" />
                     </div>
                 </div>
             </section>
@@ -173,17 +193,19 @@
         function openImage(galleryItem) {
             pageBlur.inert = false;
             zoomOut(image);
-            main.style.userSelect = "none";
-            header.style.userSelect = "none";
-            footer.style.userSelect = "none";
-            main.style.animation = "blur 1s";
-            header.style.animation = "blur 1s";
+            main.style.userSelect,
+            header.style.userSelect,
+            footer.style.userSelect =  "none";
+            main.style.animation,
+            header.style.animation,
             footer.style.animation = "blur 1s";
             pageBlur.style.display = "flex";
             pageBlur.style.animation = "reveal 1s";
             let src = galleryItem.children[1].src;
-            let alt = galleryItem.children[1].alt;
-            document.getElementById("image-title").innerText = alt;
+            let title = galleryItem.getAttribute("data-title");
+            let subtitle = galleryItem.getAttribute("data-subtitle");
+            document.getElementById("image-title").innerText = title;
+            document.getElementById("image-subtitle").innerText = subtitle;
             prevButton.onclick = function() { prevImage(galleryItem); };
             nextButton.onclick = function() { nextImage(galleryItem); };
             image.src = src;
@@ -191,8 +213,8 @@
             image.style.animation = "fadeIn 1.5s";
             clearTimeout(timeout);
             timeout = setTimeout(function(){
-                main.style.filter = "blur(10px)";
-                header.style.filter = "blur(10px)";
+                main.style.filter,
+                header.style.filter,
                 footer.style.filter = "blur(10px)";
             }, 950);
             document.body.style.height = "100%";
@@ -216,22 +238,22 @@
         function closeImage() {
             pageBlur.inert = true;
             pageBlur.style.animation = "unreveal 1s";
-            main.style.animation = "unblur 1s";
-            header.style.animation = "unblur 1s";
+            main.style.animation,
+            header.style.animation,
             footer.style.animation = "unblur 1s";
             viewer.style.animation = "fadeOut 1.5s";
-            main.style.userSelect = "initial";
-            header.style.userSelect = "initial";
+            main.style.userSelect,
+            header.style.userSelect,
             footer.style.userSelect = "initial";
             clearTimeout(timeout);
             timeout = setTimeout(function(){
-                main.style.filter = "none";
-                header.style.filter = "none";
-                footer.style.filter = "none";
+                main.style.filter ,
+                header.style.filter,
+                footer.style.filte,
                 pageBlur.style.display = "none";
                 zoomOut(image);
             }, 950);
-            document.body.style.height = "initial";
+            document.body.style.height,
             document.body.style.overflow = "initial";
         }
         /* Courtesy of https://www.w3schools.com/howto/howto_js_image_zoom.asp */
