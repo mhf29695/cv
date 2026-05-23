@@ -193,12 +193,10 @@
         function openImage(galleryItem) {
             pageBlur.inert = false;
             zoomOut(image);
-            main.style.userSelect,
-            header.style.userSelect,
+            main.style.userSelect =
+            header.style.userSelect =
             footer.style.userSelect =  "none";
-            main.style.animation,
-            header.style.animation,
-            footer.style.animation = "blur 1s";
+            main.style.animation = header.style.animation = footer.style.animation = "blur 1s";
             pageBlur.style.display = "flex";
             pageBlur.style.animation = "reveal 1s";
             let src = galleryItem.children[1].src;
@@ -213,8 +211,8 @@
             image.style.animation = "fadeIn 1.5s";
             clearTimeout(timeout);
             timeout = setTimeout(function(){
-                main.style.filter,
-                header.style.filter,
+                main.style.filter =
+                header.style.filter =
                 footer.style.filter = "blur(10px)";
             }, 950);
             document.body.style.height = "100%";
@@ -238,22 +236,22 @@
         function closeImage() {
             pageBlur.inert = true;
             pageBlur.style.animation = "unreveal 1s";
-            main.style.animation,
-            header.style.animation,
+            main.style.animation =
+            header.style.animation =
             footer.style.animation = "unblur 1s";
             viewer.style.animation = "fadeOut 1.5s";
-            main.style.userSelect,
-            header.style.userSelect,
+            main.style.userSelect =
+            header.style.userSelect =
             footer.style.userSelect = "initial";
             clearTimeout(timeout);
             timeout = setTimeout(function(){
-                main.style.filter ,
-                header.style.filter,
-                footer.style.filte,
+                main.style.filter =
+                header.style.filter =
+                footer.style.filter =
                 pageBlur.style.display = "none";
                 zoomOut(image);
             }, 950);
-            document.body.style.height,
+            document.body.style.height =
             document.body.style.overflow = "initial";
         }
         /* Courtesy of https://www.w3schools.com/howto/howto_js_image_zoom.asp */
