@@ -396,3 +396,10 @@
       font-size: .8em;
    }
 }
+
+#main :is(.gallery-item,h1,h2,h3,h4,p,iframe) { /* hover up animation application to all elements that don't conflict with load-in animation */
+    animation-timeline: view();
+    animation-name: kineticUp;
+    animation-timing-function: ease-out;
+    animation-range: cover;
+}

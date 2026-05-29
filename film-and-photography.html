@@ -58,13 +58,13 @@
 
         <main id="main">
             <section id="film">
-                <h1 class="title">Film Showcase</h1>
+                <div class="fadeDelayed0"><h1 class="title">Film Showcase</h1></div>
                 <div id="carousel">
-                    <div id="player">
+                    <div id="player" class="fadeDelayed1">
                         <iframe id="video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         <div id="video-info"></div>
-                        </div>
-                    <div id="carousel-bar" class="carousel-bar">
+                    </div>
+                    <div id="carousel-bar" class="carousel-bar fadeDelayed2">
                         <div class="button-container" id="prev-button" onclick="prevVideo()">
                             <button type="button" class="prev">&#8249;</button>
                         </div>
@@ -90,8 +90,8 @@
                 </div>
             </section>
             <section id="photography">
-                <h1 class="title">Photo Gallery</h1>
-                <div id="gallery">
+                <div class="fadeDelayed3"><h1 class="title">Photo Gallery</h1></div>
+                <div id="gallery" class="fadeDelayed4">
                     <div class="gallery-item" onclick="openImage(this)"
                         data-title="Under the Gaze of Giants"
                         data-subtitle="Silverton, CO, 2023">

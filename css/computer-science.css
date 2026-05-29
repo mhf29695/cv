@@ -1,4 +1,4 @@
-#page :is(p,li,textarea,input,button,dd,dt,h1,h2,h3,h4,.card,hr,span), #splashImg { /* hover up animation application to all elements that don't conflict with load-in animation */
+#main :is(p,li,textarea,input,button,dd,dt,h1,h2,h3,h4,.card,hr,span), #splashImg { /* hover up animation application to all elements that don't conflict with load-in animation */
     animation-timeline: view();
     animation-name: kineticUp;
     animation-timing-function: ease-out;
